@@ -105,6 +105,9 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    i18n_generators (2.2.2)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -332,6 +335,7 @@ DEPENDENCIES
   brakeman
   cssbundling-rails
   debug
+  i18n_generators
   jsbundling-rails
   kamal
   propshaft
