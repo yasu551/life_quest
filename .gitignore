@@ -38,3 +38,4 @@
 
 /node_modules
 /.idea
+/.kamal/registry_password.key
