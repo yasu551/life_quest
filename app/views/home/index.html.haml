@@ -3,3 +3,5 @@
 
 = simple_form_for :user do |f|
   = f.button :submit
+
+= button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "btn btn-danger"

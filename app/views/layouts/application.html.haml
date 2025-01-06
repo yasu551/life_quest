@@ -1,6 +1,7 @@
 !!!
-%html
+%html{ lang: "ja" }
   %head
+    %meta{ content: "ja", "http-equiv": "content-language" }
     %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
     %title= content_for(:title) || "Life Quest"
     %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }
@@ -17,3 +18,4 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
   %body
     = yield
+    = render "layouts/rails-template-inspector" if Rails.env.development?

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resource :session, only: %i[ new create destroy ]
+  # TODO: メール送信APIを使って、パスワードリセット機能を実装する
+  # resources :passwords, param: :token, only: %i[ new create edit update ]
   root "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check
