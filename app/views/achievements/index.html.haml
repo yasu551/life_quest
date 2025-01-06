@@ -1,9 +1,25 @@
 .row.justify-content-center.align-items-center
   .col-md-6.col-11
     %h1.fs-2.text-center.my-4 実績一覧
+    %ul.nav.nav-tabs.mb-3
+      - current_scope_chains = params[:scope_chains]
+      %li.nav-item
+        = link_to "全て", achievements_path, class: class_names("nav-link", active: current_scope_chains.blank?)
+      %li.nav-item
+        - scope_chains = "active.ideal"
+        = link_to "理想", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "active.feasible"
+        = link_to "実行可能", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "active.achieved"
+        = link_to "達成済み", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "active.not_achieved"
+        = link_to "未達成", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
     .mb-3
-      = link_to '新規作成', new_achievement_path, class: 'btn btn-primary'
+      = link_to "新規作成", new_achievement_path, class: "btn btn-primary"
     .list-group
       - @achievements.each do |achievement|
-        = link_to edit_achievement_path(achievement), class: 'list-group-item list-group-item-action' do
+        = link_to edit_achievement_path(achievement), class: "list-group-item list-group-item-action" do
           %span= achievement.name
