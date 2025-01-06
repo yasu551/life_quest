@@ -1,0 +1,6 @@
+= simple_form_for achievement do |f|
+  = f.input :name, autofocus: true
+  = f.input :description
+  = f.input :achieved_on, html5: true
+  = f.input :memo
+  = f.button :submit, submit_button_label(achievement), class: 'btn btn-primary d-block w-100'

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_06_024453) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_06_063452) do
+  create_table "achievements", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", default: "", null: false
+    t.text "memo", default: "", null: false
+    t.integer "parent_id"
+    t.integer "user_id", null: false
+    t.date "achieved_on"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_achievements_on_parent_id"
+    t.index ["user_id"], name: "index_achievements_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address", null: false
@@ -28,5 +42,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_024453) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "achievements", "achievements", column: "parent_id"
+  add_foreign_key "achievements", "users"
   add_foreign_key "sessions", "users"
 end

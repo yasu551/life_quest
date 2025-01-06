@@ -3,6 +3,7 @@ ja:
     models:
       session: session  #g
       user: ユーザー
+      achievement: 実績
 
     attributes:
       session:
@@ -15,3 +16,14 @@ ja:
         password: パスワード
         password_digest: password_digest  #g
         sessions: sessions  #g
+        achievements: achievements  #g
+
+      achievement:
+        achieved_on: 達成日
+        active: 有効にする？
+        children: children  #g
+        description: 説明
+        memo: メモ
+        name: 名前
+        parent: :activerecord.models.parent  #g
+        user: :activerecord.models.user  #g
