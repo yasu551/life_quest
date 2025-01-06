@@ -1,4 +1,7 @@
-= simple_form_for :user, url: session_path do |f|
-  = f.input :email_address
-  = f.input :password
-  = f.button :submit, 'ログイン'
+.vh-100.row.justify-content-center.align-items-center
+  .col-md-6.col-11
+    %h1.text-center.mb-5 LIFE QUEST
+    = simple_form_for @user, url: session_path do |f|
+      = f.input :email_address, autofocus: true, autocomplete: 'email'
+      = f.input :password, autocomplete: 'current-password'
+      = f.button :submit, 'ログイン', class: 'btn btn-primary d-block w-100'

@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      session: session  #g
+      user: ユーザー
+
+    attributes:
+      session:
+        ip_address: IPアドレス
+        user: :activerecord.models.user  #g
+        user_agent: ユーザー・エージェント
+
+      user:
+        email_address: メールアドレス
+        password: パスワード
+        password_digest: password_digest  #g
+        sessions: sessions  #g
