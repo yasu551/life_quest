@@ -5,4 +5,6 @@ class Achievement < ApplicationRecord
 
   validates :name, presence: true
   validates :achieved_on, date: { allow_blank: true }
+
+  scope :default_order, -> { order(id: :desc) }
 end

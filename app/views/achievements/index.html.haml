@@ -1,0 +1,9 @@
+.row.justify-content-center.align-items-center
+  .col-md-6.col-11
+    %h1.text-center.my-5 実績一覧
+    .mb-3
+      = link_to '新規作成', new_achievement_path, class: 'btn btn-primary'
+    .list-group
+      - @achievements.each do |achievement|
+        = link_to edit_achievement_path(achievement), class: 'list-group-item list-group-item-action' do
+          %span= achievement.name

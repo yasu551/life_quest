@@ -6,4 +6,6 @@
     .collapse.navbar-collapse#navbar-nav
       %ul.navbar-nav
         %li.nav-item
+          = link_to "実績一覧", achievements_path, class: "nav-link"
+        %li.nav-item
           = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "btn btn-danger"
