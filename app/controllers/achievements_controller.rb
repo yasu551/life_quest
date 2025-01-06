@@ -3,6 +3,10 @@ class AchievementsController < ApplicationController
   before_action :set_achievements, only: %i[ index new create edit update]
 
   def index
+    scope_chains = params&.dig(:scope_chains)
+    if scope_chains.present?
+      @achievements = @achievements.applied_scopes(scope_chains)
+    end
   end
 
   def new
