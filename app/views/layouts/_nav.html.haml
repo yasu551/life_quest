@@ -1,0 +1,9 @@
+%nav.navbar.navbar-expand-lg
+  .container-fluid
+    = link_to "LIFE QUEST", root_path, class: "navbar-brand"
+    %button.navbar-toggler{ type: :button, data: { bs: { toggle: :collapse, target: "#navbar-nav" } }, aria: { controls: "navbar-nav", expanded: false } }
+      %span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbar-nav
+      %ul.navbar-nav
+        %li.nav-item
+          = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "btn btn-danger"

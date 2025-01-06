@@ -16,6 +16,7 @@
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-  %body
+  %body.container-fluid
+    = authenticated? && (render "layouts/nav")
     = yield
-    = render "layouts/rails-template-inspector" if Rails.env.development?
+    = Rails.env.development? && (render "layouts/rails-template-inspector")
