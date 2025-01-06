@@ -389,6 +389,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  bigdecimal
   bootsnap
   brakeman
   cssbundling-rails
