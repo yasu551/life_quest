@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_06_063452) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_06_230258) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -34,6 +34,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_063452) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "completion_condition", default: "", null: false
+    t.string "status", default: "new", null: false
+    t.date "deadline_on"
+    t.text "sub_tasks", default: "", null: false
+    t.text "memo", default: "", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -45,4 +58,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_063452) do
   add_foreign_key "achievements", "achievements", column: "parent_id"
   add_foreign_key "achievements", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tasks", "users"
 end

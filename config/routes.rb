@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # resources :passwords, param: :token, only: %i[ new create edit update ]
 
   resources :achievements, only: %i[ index new create edit update ]
+  resources :tasks, only: %i[ index new create edit update ]
   root "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check

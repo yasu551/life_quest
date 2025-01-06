@@ -4,6 +4,7 @@ ja:
       session: session  #g
       user: ユーザー
       achievement: 実績
+      task: タスク
 
     attributes:
       session:
@@ -27,3 +28,21 @@ ja:
         name: 名前
         parent: 親実績
         user: :activerecord.models.user  #g
+
+      task:
+        completion_condition: 完了条件
+        deadline_on: 締切日
+        memo: メモ
+        name: 名前
+        status: 状況
+        sub_tasks: サブタスク
+        user: :activerecord.models.user  #g
+
+  enumerize:
+    task:
+      status:
+        new: 新規
+        waiting: 未着手
+        working: 進行中
+        completed: 完了
+        pending: 保留

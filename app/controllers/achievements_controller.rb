@@ -16,7 +16,7 @@ class AchievementsController < ApplicationController
   def create
     @achievement = Current.user.achievements.build(achievement_params)
     if @achievement.save
-      redirect_to achievements_url, notice: "実績を作成しました。"
+      redirect_to achievements_url, notice: "実績を作成しました。", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class AchievementsController < ApplicationController
 
   def update
     if @achievement.update(achievement_params)
-      redirect_to achievements_url, notice: "実績を更新しました。"
+      redirect_to achievements_url, notice: "実績を更新しました。", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class AchievementsController < ApplicationController
   end
 
   def set_achievement
-    @achievement = Current.user.achievements.find(params[:id])
+    @achievement = Current.user.achievements.find(params.expect(:id))
   end
 
   def set_achievements
