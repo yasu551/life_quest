@@ -39,6 +39,7 @@ gem "thruster", require: false
 
 gem "haml-rails"
 gem "enumerize"
+gem "simple_form"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -58,4 +59,3 @@ group :development do
   gem "i18n_generators", require: false
   gem "html2haml", require: false
 end
-
