@@ -376,14 +376,14 @@ DEPENDENCIES
   jsbundling-rails
   kamal
   propshaft
-  puma (>= 5.0)
+  puma
   rails (~> 8.0.1)
   rubocop-rails-omakase
   simple_form
   solid_cable
   solid_cache
   solid_queue
-  sqlite3 (>= 2.1)
+  sqlite3
   stimulus-rails
   thruster
   turbo-rails
