@@ -25,5 +25,5 @@ ja:
         description: 説明
         memo: メモ
         name: 名前
-        parent: :activerecord.models.parent  #g
+        parent: 親実績
         user: :activerecord.models.user  #g

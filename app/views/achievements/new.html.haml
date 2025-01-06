@@ -1,5 +1,5 @@
 .row.justify-content-center.align-items-center
   .col-md-6.col-11
-    %h1.text-center.my-5 実績を作成
-    .mb-3= render 'form', achievement: @achievement
+    %h1.fs-2.text-center.my-4 実績を作成
+    .mb-3= render 'form', achievement: @achievement, achievements: @achievements
     = link_to '一覧に戻る', achievements_path, class: 'btn btn-link'

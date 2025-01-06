@@ -1,8 +1,8 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: %i[ edit update ]
+  before_action :set_achievements, only: %i[ index new create edit update]
 
   def index
-    @achievements = Current.user.achievements.default_order
   end
 
   def new
@@ -37,5 +37,9 @@ class AchievementsController < ApplicationController
 
   def set_achievement
     @achievement = Current.user.achievements.find(params[:id])
+  end
+
+  def set_achievements
+    @achievements = Current.user.achievements.default_order
   end
 end
