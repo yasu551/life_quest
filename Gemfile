@@ -56,6 +56,7 @@ group :development, :test do
   gem "haml_lint", require: false
   gem "rspec-rails"
   gem "factory_bot_rails"
+  gem "dotenv"
 end
 
 group :test do

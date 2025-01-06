@@ -1,4 +1,6 @@
 class Achievement < ApplicationRecord
+  APPLICABLE_SCOPE_NAMES = %w[ ideal active inactive achieved not_achieved parents terminal feasible ]
+
   belongs_to :user
   belongs_to :parent, class_name: "Achievement", optional: true
   has_many :children, class_name: "Achievement", foreign_key: :parent_id, dependent: :restrict_with_exception
@@ -20,12 +22,14 @@ class Achievement < ApplicationRecord
       .or(not_achieved.terminal)
   end
   scope :applied_scopes, ->(scope_chains) do
-    valid_scope_names = %w[ ideal active inactive achieved not_achieved parents terminal feasible ]
     scope_names = scope_chains.split(".")
-    scope_names.each do |scope_name|
-      raise ArgumentError, "#{scope_name} is invalid" unless valid_scope_names.include?(scope_name)
+    invalid_scope_names = scope_names - APPLICABLE_SCOPE_NAMES
+    if invalid_scope_names.present?
+      raise ArgumentError, "#{invalid_scope_names.join(", ")} is invalid"
     end
 
-    scope_names.each_with_object(all) { |scope_name, records| records.public_send(scope_name) }
+    scope_names.inject(self) do |relation, scope_name|
+      relation.public_send(scope_name)
+    end
   end
 end

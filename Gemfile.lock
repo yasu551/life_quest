@@ -399,6 +399,7 @@ DEPENDENCIES
   cssbundling-rails
   date_validator
   debug
+  dotenv
   enumerize
   factory_bot_rails
   haml-rails
