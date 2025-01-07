@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   extend Enumerize
 
-  enumerize :status, in: %i[new waiting working completed pending]
+  enumerize :status, in: %i[new waiting working completed pending], scope: true
 
   belongs_to :user
 
