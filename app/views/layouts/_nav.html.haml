@@ -10,6 +10,8 @@
         %li.nav-item
           = link_to "タスク一覧", tasks_path, class: "nav-link"
         %li.nav-item
+          = link_to "行動サマリ一覧", activity_summaries_path, class: "nav-link"
+        %li.nav-item
           = link_to "行動一覧", activities_path, class: "nav-link"
         %li.nav-item
           = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "btn btn-danger"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_07_105020) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_07_122655) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -42,6 +42,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_07_105020) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_activity_evaluations_on_activity_id"
+  end
+
+  create_table "activity_summaries", force: :cascade do |t|
+    t.date "start_on", null: false
+    t.date "end_on", null: false
+    t.text "content", default: "", null: false
+    t.text "memo", default: "", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activity_summaries_on_user_id"
+  end
+
+  create_table "activity_summary_items", force: :cascade do |t|
+    t.integer "activity_summary_id", null: false
+    t.integer "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_summary_items_on_activity_id"
+    t.index ["activity_summary_id", "activity_id"], name: "idx_on_activity_summary_id_activity_id_dd8c6dafdb", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -86,6 +106,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_07_105020) do
   add_foreign_key "achievements", "users"
   add_foreign_key "activities", "tasks"
   add_foreign_key "activity_evaluations", "activities"
+  add_foreign_key "activity_summaries", "users"
+  add_foreign_key "activity_summary_items", "activities"
+  add_foreign_key "activity_summary_items", "activity_summaries"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "time_entries", "tasks"

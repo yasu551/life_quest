@@ -8,6 +8,8 @@ ja:
       activity: 行動
       activity_evaluation: 行動評価
       time_entry: 分報
+      activity_summary: 行動サマリ
+      activity_summary_item: activity_summary_item  #g
 
     attributes:
       session:
@@ -23,6 +25,7 @@ ja:
         achievements: achievements  #g
         activities: activities  #g
         tasks: tasks  #g
+        activity_summaries: activity_summaries  #g
 
       achievement:
         achieved_on: 達成日
@@ -50,14 +53,28 @@ ja:
         name: 名前
         performed_at: 日時
         task: タスク
+        activity_evaluation: :activerecord.models.activity_evaluation  #g
 
       activity_evaluation:
         reason: 理由
         value: 評価
+        activity: :activerecord.models.activity  #g
 
       time_entry:
         content: 内容
         task: :activerecord.models.task  #g
+
+      activity_summary:
+        start_on: 開始日
+        end_on: 終了日
+        content: 内容
+        memo: メモ
+        user: :activerecord.models.user  #g
+        activities: 行動
+
+      activity_summary_item:
+        activity_summary: :activerecord.models.activity_summary  #g
+        activity: :activerecord.models.activity  #g
 
   enumerize:
     task:
