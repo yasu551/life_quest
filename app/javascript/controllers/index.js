@@ -3,6 +3,8 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import TextareaAutogrow from 'stimulus-textarea-autogrow'
 import ToastController from "./toast_controller"
 
+application.register("textarea-autogrow", TextareaAutogrow)
 application.register("toast", ToastController)
