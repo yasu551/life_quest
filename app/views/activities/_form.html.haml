@@ -1,0 +1,9 @@
+= simple_form_for activity do |f|
+  = f.input :name, autofocus: true
+  = f.association :task, collection: @tasks, label_method: :name, value_method: :id, include_blank: false
+  = f.input :performed_at, html5: true
+  = f.simple_fields_for :activity_evaluation do |ff|
+    = ff.input :value, include_blank: false
+    = ff.input :reason, input_html: { data: { controller: 'textarea-autogrow' } }
+  = f.input :memo, input_html: { data: { controller: 'textarea-autogrow' } }
+  = f.button :submit, submit_button_label(activity), class: 'btn btn-primary d-block w-100'

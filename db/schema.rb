@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_07_082843) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_07_105020) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -23,6 +23,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_07_082843) do
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_achievements_on_parent_id"
     t.index ["user_id"], name: "index_achievements_on_user_id"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "performed_at", null: false
+    t.text "memo", default: "", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_activities_on_task_id"
+  end
+
+  create_table "activity_evaluations", force: :cascade do |t|
+    t.string "value", default: "neutral", null: false
+    t.text "reason", default: "", null: false
+    t.integer "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_evaluations_on_activity_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -65,6 +84,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_07_082843) do
 
   add_foreign_key "achievements", "achievements", column: "parent_id"
   add_foreign_key "achievements", "users"
+  add_foreign_key "activities", "tasks"
+  add_foreign_key "activity_evaluations", "activities"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "time_entries", "tasks"

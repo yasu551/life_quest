@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :achievements, dependent: :restrict_with_exception
   has_many :tasks, dependent: :restrict_with_exception
+  has_many :activities, through: :tasks
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 

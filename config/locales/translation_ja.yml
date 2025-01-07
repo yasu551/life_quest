@@ -5,6 +5,9 @@ ja:
       user: ユーザー
       achievement: 実績
       task: タスク
+      activity: 行動
+      activity_evaluation: 行動評価
+      time_entry: 分報
 
     attributes:
       session:
@@ -18,6 +21,8 @@ ja:
         password_digest: password_digest  #g
         sessions: sessions  #g
         achievements: achievements  #g
+        activities: activities  #g
+        tasks: tasks  #g
 
       achievement:
         achieved_on: 達成日
@@ -37,6 +42,22 @@ ja:
         status: 状況
         sub_tasks: サブタスク
         user: :activerecord.models.user  #g
+        activities: activities  #g
+        time_entries: time_entries  #g
+
+      activity:
+        memo: メモ
+        name: 名前
+        performed_at: 日時
+        task: タスク
+
+      activity_evaluation:
+        reason: 理由
+        value: 評価
+
+      time_entry:
+        content: 内容
+        task: :activerecord.models.task  #g
 
   enumerize:
     task:

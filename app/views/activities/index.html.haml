@@ -1,0 +1,17 @@
+.row.justify-content-center.align-items-center
+  .col-md-6.col-11
+    %h1.fs-2.text-center.my-4 行動一覧
+    %ul.nav.nav-tabs.mb-3
+      - current_evaluation_value = params[:evaluation_value]
+      %li.nav-item
+        = link_to "全て", activities_path, class: class_names("nav-link", active: current_evaluation_value.blank?)
+      - ActivityEvaluation::VALUES.each do |value|
+        - evaluation_value = value.to_s
+        %li.nav-item
+          = link_to evaluation_value.capitalize, activities_path(evaluation_value:), class: class_names("nav-link", active: current_evaluation_value == evaluation_value)
+    .mb-3
+      = link_to "新規作成", new_activity_path, class: "btn btn-primary"
+    .list-group
+      - @activities.each do |activity|
+        = link_to edit_activity_path(activity), class: "list-group-item list-group-item-action" do
+          %span= activity.name
