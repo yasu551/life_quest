@@ -4,8 +4,10 @@
     - status_hash = Task.status.options.map { [it[1].to_sym, it[0]] }.to_h
     - status_hash.each do |key, value|
       .w-25.d-flex.flex-column.align-items-center.gap-2
-        .bg-info.text-center.w-100
-          %h3.fs-4.mb-0.py-2.text-white= value
+        .d-flex.justify-content-between.align-items-center.w-100.py-2.border-bottom
+          %h3.fs-4.mb-0.text-info= value
+          - if key == :new
+            = link_to "作成", new_task_path, class: "btn btn-secondary"
         .list-group.w-100
           - @tasks.with_status(key).each do |task|
             = link_to edit_task_path(task), class: "list-group-item list-group-item-action" do
