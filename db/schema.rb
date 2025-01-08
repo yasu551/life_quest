@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_07_122655) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_08_000248) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -62,6 +62,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_07_122655) do
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_activity_summary_items_on_activity_id"
     t.index ["activity_summary_id", "activity_id"], name: "idx_on_activity_summary_id_activity_id_dd8c6dafdb", unique: true
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", default: "", null: false
+    t.datetime "perform_at"
+    t.datetime "performed_at"
+    t.boolean "active", default: true, null: false
+    t.string "source_type", null: false
+    t.integer "source_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_type", "source_id"], name: "index_challenges_on_source"
   end
 
   create_table "sessions", force: :cascade do |t|

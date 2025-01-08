@@ -1,0 +1,4 @@
+.card
+  .card-body
+    %p.mb-0= challenge.name
+    %small.text-body-secondary 実行予定日時: #{nl(challenge.perform_at, format: :long)},  実行日時: #{nl(challenge.performed_at, format: :long)}

@@ -1,0 +1,15 @@
+= turbo_frame_tag dom_id(@achievement, :challenges) do
+  .vstack
+    %h2.fs-4.my-4 小さな挑戦
+    %ul.nav.nav-tabs.mb-3
+      - current_active = params[:active]
+      %li.nav-item
+        = link_to "全て", achievement_challenges_path(@achievement), class: class_names("nav-link", active: current_active.nil?)
+      - [ %w[ 有効 true ], %w[ 無効 false ] ].each do |label, active|
+        %li.nav-item
+          = link_to label, achievement_challenges_path(@achievement, active:), class: class_names("nav-link", active: current_active == active)
+    .vstack.gap-2
+      = link_to "新規作成", new_achievement_challenge_path(@achievement), data: { turbo_frame: :_top }, class: "btn btn-secondary"
+      - @challenges.each do |challenge|
+        = link_to edit_achievement_challenge_path(@achievement, challenge), data: { turbo_frame: :_top }, class: "text-decoration-none" do
+          = render "challenge", challenge:

@@ -10,6 +10,7 @@ ja:
       time_entry: 分報
       activity_summary: 行動サマリ
       activity_summary_item: activity_summary_item  #g
+      challenge: 小さな挑戦
 
     attributes:
       session:
@@ -26,6 +27,8 @@ ja:
         activities: activities  #g
         tasks: tasks  #g
         activity_summaries: activity_summaries  #g
+        achievement_challenges: achievement_challenges  #g
+        activity_challenges: activity_challenges  #g
 
       achievement:
         achieved_on: 達成日
@@ -36,6 +39,7 @@ ja:
         name: 名前
         parent: 親実績
         user: :activerecord.models.user  #g
+        challenges: challenges  #g
 
       task:
         completion_condition: 完了条件
@@ -54,6 +58,7 @@ ja:
         performed_at: 日時
         task: タスク
         activity_evaluation: :activerecord.models.activity_evaluation  #g
+        challenges: challenges  #g
 
       activity_evaluation:
         reason: 理由
@@ -71,10 +76,20 @@ ja:
         memo: メモ
         user: :activerecord.models.user  #g
         activities: 行動
+        activity_summary_items: activity_summary_items  #g
 
       activity_summary_item:
         activity_summary: :activerecord.models.activity_summary  #g
         activity: :activerecord.models.activity  #g
+
+      challenge:
+        description: 説明
+        name: 名前
+        perform_at: 実行予定日時
+        performed_at: 実行日時
+        source: :activerecord.models.source  #g
+        source_type: source_type  #g
+        active: 有効にする？
 
   enumerize:
     task:
