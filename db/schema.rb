@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_08_045439) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_09_015601) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -96,6 +96,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_045439) do
     t.index ["user_id", "name"], name: "index_tags_on_user_id_and_name", unique: true
   end
 
+  create_table "task_taggings", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_task_taggings_on_tag_id"
+    t.index ["task_id"], name: "index_task_taggings_on_task_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "completion_condition", default: "", null: false
@@ -134,6 +143,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_045439) do
   add_foreign_key "activity_summary_items", "activity_summaries"
   add_foreign_key "sessions", "users"
   add_foreign_key "tags", "users"
+  add_foreign_key "task_taggings", "tags"
+  add_foreign_key "task_taggings", "tasks"
   add_foreign_key "tasks", "users"
   add_foreign_key "time_entries", "tasks"
 end

@@ -53,6 +53,7 @@ ja:
         user: :activerecord.models.user  #g
         activities: activities  #g
         time_entries: time_entries  #g
+        tags: タグ
 
       activity:
         memo: メモ

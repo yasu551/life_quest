@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ edit update ]
+  before_action :set_tags, only: %i[ new create edit update ]
 
   def index
     @tasks = Current.user.tasks.default_order
@@ -35,7 +36,11 @@ class TasksController < ApplicationController
     @task = Current.user.tasks.find(params.expect(:id))
   end
 
+  def set_tags
+    @tags = Current.user.tags.default_order
+  end
+
   def task_params
-    params.expect(task: %i[ name completion_condition status deadline_on sub_tasks memo ])
+    params.expect(task: [:name, :completion_condition, :status, :deadline_on, :sub_tasks, :memo, tag_ids: []])
   end
 end
