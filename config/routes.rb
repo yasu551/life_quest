@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :activity_summaries, only: %i[ index new create edit update destroy ]
+  resources :tags, only: %i[ index new create edit update destroy ]
   root "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check

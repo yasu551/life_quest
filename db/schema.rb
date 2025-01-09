@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_08_000248) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_08_045439) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -86,6 +86,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_000248) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "color", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name"
+    t.index ["user_id", "name"], name: "index_tags_on_user_id_and_name", unique: true
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "completion_condition", default: "", null: false
@@ -123,6 +133,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_000248) do
   add_foreign_key "activity_summary_items", "activities"
   add_foreign_key "activity_summary_items", "activity_summaries"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tags", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "time_entries", "tasks"
 end

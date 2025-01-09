@@ -1,0 +1,9 @@
+.row.justify-content-center.align-items-center
+  .col-md-6.col-11
+    %h1.fs-2.text-center.my-4 タグ一覧
+    .mb-3
+      = link_to "新規作成", new_tag_path, class: "btn btn-primary"
+    .list-group
+      - @tags.each do |tag|
+        = link_to edit_tag_path(tag), class: "list-group-item list-group-item-action" do
+          = tag.name

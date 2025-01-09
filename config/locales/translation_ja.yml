@@ -11,6 +11,7 @@ ja:
       activity_summary: 行動サマリ
       activity_summary_item: activity_summary_item  #g
       challenge: 小さな挑戦
+      tag: タグ
 
     attributes:
       session:
@@ -29,6 +30,7 @@ ja:
         activity_summaries: activity_summaries  #g
         achievement_challenges: achievement_challenges  #g
         activity_challenges: activity_challenges  #g
+        tags: tags  #g
 
       achievement:
         achieved_on: 達成日
@@ -90,6 +92,11 @@ ja:
         source: :activerecord.models.source  #g
         source_type: source_type  #g
         active: 有効にする？
+
+      tag:
+        name: 名前
+        color: 色
+        user: :activerecord.models.user  #g
 
   enumerize:
     task:
