@@ -1,5 +1,5 @@
 class Achievement < ApplicationRecord
-  APPLICABLE_SCOPE_NAMES = %w[ ideal active inactive achieved not_achieved parents terminal feasible ]
+  APPLICABLE_SCOPE_NAMES = %w[ ideal active inactive achieved not_achieved parents terminal feasible ].freeze
 
   belongs_to :user
   belongs_to :parent, class_name: "Achievement", optional: true

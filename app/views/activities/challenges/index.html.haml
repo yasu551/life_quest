@@ -10,6 +10,8 @@
           = link_to label, activity_challenges_path(@activity, active:), class: class_names("nav-link", active: current_active == active)
     .vstack.gap-2
       = link_to "新規作成", new_activity_challenge_path(@activity), data: { turbo_frame: :_top }, class: "btn btn-secondary"
-      - @challenges.each do |challenge|
-        = link_to edit_activity_challenge_path(@activity, challenge), data: { turbo_frame: :_top }, class: "text-decoration-none" do
-          = render "challenge", challenge:
+      .vstack.mb-3
+        - @challenges.each do |challenge|
+          = link_to edit_activity_challenge_path(@activity, challenge), data: { turbo_frame: :_top }, class: "text-decoration-none" do
+            = render "challenge", challenge:
+      = paginate @challenges

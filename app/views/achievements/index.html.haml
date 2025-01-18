@@ -18,7 +18,8 @@
         = link_to "未達成", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
     .mb-3
       = link_to "新規作成", new_achievement_path, class: "btn btn-primary"
-    .list-group
+    .list-group.mb-3
       - @achievements.each do |achievement|
         = link_to edit_achievement_path(achievement), class: "list-group-item list-group-item-action" do
           %span= achievement.name
+    = paginate @achievements

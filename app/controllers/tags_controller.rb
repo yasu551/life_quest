@@ -3,7 +3,7 @@ class TagsController < ApplicationController
   before_action :set_tag, only: %i[ edit update destroy ]
 
   def index
-    @tags = Current.user.tags.default_order
+    @tags = Current.user.tags.page(params[:page]).default_order
   end
 
   def new

@@ -3,7 +3,7 @@ class Tasks::TimeEntriesController < Tasks::BaseController
 
   def index
     @time_entry = @task.time_entries.build
-    @time_entries = @task.time_entries.default_order
+    @time_entries = @task.time_entries.page(params[:page]).default_order
   end
 
   def create

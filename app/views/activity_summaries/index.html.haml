@@ -2,7 +2,8 @@
   .col-md-6.col-11
     .mb-3
       = link_to "新規作成", new_activity_summary_path, class: "btn btn-primary"
-    .list-group
+    .list-group.mb-3
       - @activity_summaries.each do |activity_summary|
         = link_to edit_activity_summary_path(activity_summary), class: "list-group-item list-group-item-action" do
           #{l(activity_summary.start_on)} ~ #{l(activity_summary.end_on)}
+    = paginate @activity_summaries

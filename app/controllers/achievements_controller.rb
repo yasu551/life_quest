@@ -5,6 +5,7 @@ class AchievementsController < ApplicationController
 
   def index
     scope_chains = params&.dig(:scope_chains)
+    @achievements = @achievements.page(params[:page])
     if scope_chains.present?
       @achievements = @achievements.applied_scopes(scope_chains)
     end

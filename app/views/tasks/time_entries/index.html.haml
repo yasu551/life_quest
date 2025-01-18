@@ -4,5 +4,6 @@
     .vstack.gap-3
       = render "form", task: @task, time_entry: @time_entry
       %hr.m-0
-      .vstack.gap-2
+      .vstack.gap-2.mb-3
         = render partial: "time_entry", collection: @time_entries, locals: { task: @task }
+      = paginate @time_entries

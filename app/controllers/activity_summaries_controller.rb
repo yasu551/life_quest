@@ -4,7 +4,7 @@ class ActivitySummariesController < ApplicationController
   before_action :set_activities, only: %i[ new create edit update ]
 
   def index
-    @activity_summaries = Current.user.activity_summaries.default_order
+    @activity_summaries = Current.user.activity_summaries.page(params[:page]).default_order
   end
 
   def new

@@ -11,7 +11,8 @@
                     class: class_names("nav-link", active: current_evaluation_value == evaluation_value)
     .mb-3
       = link_to "新規作成", new_activity_path, class: "btn btn-primary"
-    .list-group
+    .list-group.mb-3
       - @activities.each do |activity|
         = link_to edit_activity_path(activity), class: "list-group-item list-group-item-action" do
           %span= activity.name
+    = paginate @activities

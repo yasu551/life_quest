@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   before_action :set_tasks, only: %i[ new create edit update ]
 
   def index
-    @activities = Current.user.activities.default_order
+    @activities = Current.user.activities.page(params[:page]).default_order
     evaluation_value = params&.dig(:evaluation_value)
     if evaluation_value.present?
       @activities = @activities.by_evaluation_value(evaluation_value)
@@ -52,6 +52,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.expect(activity: [:name, :task_id, :performed_at, :memo, activity_evaluation_attributes: %i[ value reason ]])
+    params.expect(activity: [ :name, :task_id, :performed_at, :memo, activity_evaluation_attributes: %i[ value reason ] ])
   end
 end

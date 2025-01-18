@@ -2,7 +2,7 @@ class Achievements::ChallengesController < Achievements::BaseController
   before_action :set_challenge, only: %i[ edit update destroy ]
 
   def index
-    @challenges = @achievement.challenges.default_order
+    @challenges = @achievement.challenges.page(params[:page]).default_order
     active = params&.dig(:active)
     @challenges =
       case active

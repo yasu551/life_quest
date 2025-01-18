@@ -2,7 +2,8 @@
   .col-md-6.col-11
     .mb-3
       = link_to "新規作成", new_tag_path, class: "btn btn-primary"
-    .list-group
+    .list-group.mb-3
       - @tags.each do |tag|
         = link_to edit_tag_path(tag), class: "list-group-item list-group-item-action", style: "background-color: #{tag.color};" do
           = tag.name
+    = paginate @tags
