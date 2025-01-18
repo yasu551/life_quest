@@ -1,5 +1,5 @@
 class Achievements::ChallengesController < Achievements::BaseController
-  before_action :set_challenge, only: %i[ edit update ]
+  before_action :set_challenge, only: %i[ edit update destroy ]
 
   def index
     @challenges = @achievement.challenges.default_order
@@ -37,6 +37,11 @@ class Achievements::ChallengesController < Achievements::BaseController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @challenge.destroy!
+    redirect_to edit_achievement_url(@achievement), notice: "小さな挑戦を削除しました。", status: :see_other
   end
 
   private

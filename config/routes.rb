@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :achievements, only: %i[ index new create edit update destroy ] do
     scope module: :achievements do
-      resources :challenges, only: %i[ index new create edit update ]
+      resources :challenges, only: %i[ index new create edit update destroy ]
     end
   end
   resources :tasks, only: %i[ index new create edit update ] do
