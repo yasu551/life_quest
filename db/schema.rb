@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_115337) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_18_145809) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_115337) do
     t.integer "activity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_activity_evaluations_on_activity_id"
+    t.index ["activity_id"], name: "index_activity_evaluations_on_activity_id", unique: true
   end
 
   create_table "activity_summaries", force: :cascade do |t|

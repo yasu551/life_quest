@@ -6,4 +6,6 @@ class ActivityEvaluation < ApplicationRecord
   enumerize :value, in: VALUES
 
   belongs_to :activity
+
+  validates :activity_id, uniqueness: true
 end

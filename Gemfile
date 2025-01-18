@@ -69,4 +69,5 @@ group :development do
   gem "web-console"
   gem "i18n_generators", require: false
   gem "html2haml", require: false
+  gem "database_consistency", require: false
 end

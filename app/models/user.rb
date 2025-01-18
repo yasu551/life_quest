@@ -14,5 +14,6 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
+  validates :email_address, uniqueness: true
   validates :password, length: { in: PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH }
 end
