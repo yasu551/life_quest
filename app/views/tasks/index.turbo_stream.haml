@@ -4,6 +4,6 @@
       = link_to edit_task_path(task), data: { turbo_frame: :_top }, class: "list-group-item list-group-item-action" do
         = render 'task', task:
   = turbo_stream.replace "#{@status}_task_loading" do
-    = render 'loading', status: @status, page: params[:page].to_i + 1
+    = render 'loading', status: @status, page: params[:page].to_i + 1, tag_id: params[:tag_id], perform_on: params[:perform_on]
 - else
   = turbo_stream.replace "#{@status}_task_loading"

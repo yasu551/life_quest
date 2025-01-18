@@ -29,4 +29,4 @@
           - if key == :new
             = link_to "作成", new_task_path, class: "btn btn-secondary"
         = turbo_frame_tag "#{key}_tasks", class: "list-group w-100"
-        = render "loading", status: key, page: params[:page].to_i + 1
+        = render "loading", status: key, page: params[:page].to_i + 1, tag_id: params[:tag_id], perform_on: params[:perform_on]
