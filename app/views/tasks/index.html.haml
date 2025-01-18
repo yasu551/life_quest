@@ -1,22 +1,24 @@
 .container-fluid.vh-100.pt-3
   .vstack.gap-3.mb-4
     %p.mb-0.pb-1.border-bottom.fw-bold 絞り込み
-    .hstack.gap-4.align-items-center
+    = form_with url: tasks_path, method: :get, class: "hstack gap-4 align-items-center" do |f|
       - if @tags.exists?
         .hstack.gap-2.align-items-center
           %small= Task.model_name.human
-          - @tags.each do |tag|
-            = link_to tasks_path(tag_id: tag.id) do
-              %span.badge{ style: "background-color: #{tag.color};" }= tag.name
+          = f.collection_radio_buttons :tag_id, @tags, :id, :name, { checked: params[:tag_id] } do |b|
+            - id = "tag_id_#{b.object.id}"
+            .form-check.d-flex.align-items-center.gap-1
+              = b.radio_button class: "form-check-input pb-2", id:
+              = b.label class: "badge form-check-label", style: "background-color: #{b.object.color};", for: id do
+                = b.text
         .vr
-      = form_with url: tasks_path, method: :get, class: "row g-3 align-items-center" do |f|
+      .row.g-3.align-items-center
         .col-auto
           = f.label :perform_on, Task.human_attribute_name(:perform_on)
         .col-auto
           = f.date_field :perform_on, value: params[:perform_on], html5: true, class: "form-control"
-        .col-auto
-          = f.submit "絞り込み", class: "btn btn-secondary btn-sm"
       .vr
+      = f.submit "絞り込み", class: "btn btn-secondary btn-sm"
       = link_to "リセット", tasks_path, class: "btn btn-dark btn-sm"
   .d-flex.gap-2
     - status_hash = Task.status.options.map { [it[1].to_sym, it[0]] }.to_h

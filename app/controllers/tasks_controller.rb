@@ -9,7 +9,8 @@ class TasksController < ApplicationController
     if params[:tag_id].present?
       tag = Current.user.tags.find(params[:tag_id])
       @tasks = @tasks.tagged_with(tag)
-    elsif params[:perform_on].present?
+    end
+    if params[:perform_on].present?
       @tasks = @tasks.scheduled_on(params[:perform_on])
     end
   end
