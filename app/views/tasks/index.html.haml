@@ -11,4 +11,4 @@
         .list-group.w-100
           - @tasks.with_status(key).each do |task|
             = link_to edit_task_path(task), class: "list-group-item list-group-item-action" do
-              = task.name
+              = render 'task', task:
