@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tags = Current.user.tags.default_order
-    @tasks = Current.user.tasks.default_order
+    @tasks = Current.user.tasks.includes(:tags).default_order
     if params[:tag_id].present?
       tag = Current.user.tags.find(params[:tag_id])
       @tasks = @tasks.tagged_with(tag)

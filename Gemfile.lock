@@ -118,6 +118,18 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.29.3)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.29.3-aarch64-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.29.3-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.29.3-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -209,11 +221,14 @@ GEM
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
+    pg_query (6.0.0)
+      google-protobuf (>= 3.25.3)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
+    prosopite (1.4.2)
     psych (5.2.3)
       date
       stringio
@@ -413,7 +428,9 @@ DEPENDENCIES
   i18n_generators
   jsbundling-rails
   kamal
+  pg_query
   propshaft
+  prosopite
   puma
   rails (~> 8.0.1)
   rspec-rails

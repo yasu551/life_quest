@@ -1,5 +1,5 @@
 .vstack.gap-2
-  - if task.tags.exists?
+  - if task.tags.present?
     .hstack.gap-1
       -# haml-lint:disable InlineStyles
       - task.tags.each do |tag|
