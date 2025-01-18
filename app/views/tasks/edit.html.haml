@@ -2,6 +2,9 @@
   .col-md-6.col-11
     %h1.fs-4.my-4 タスクを編集
     .mb-3= render 'form', task: @task, tags: @tags
-    = link_to '一覧に戻る', tasks_path, class: 'btn btn-link'
+    .hstack.justify-content-between
+      = link_to '一覧に戻る', tasks_path, class: 'btn btn-link'
+      - if @task.destroyable?
+        = button_to "削除", task_path(@task), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger"
   .col-md-6.col-11
     = turbo_frame_tag dom_id(@task, :time_entries), src: task_time_entries_path(@task)

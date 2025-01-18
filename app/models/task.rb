@@ -13,4 +13,8 @@ class Task < ApplicationRecord
   validates :deadline_on, date: { allow_blank: true }
 
   scope :default_order, -> { order(id: :desc) }
+
+  def destroyable?
+    !time_entries.exists? && !activities.exists?
+  end
 end

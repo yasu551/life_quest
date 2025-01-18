@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ edit update ]
+  before_action :set_task, only: %i[ edit update destroy ]
   before_action :set_tags, only: %i[ new create edit update ]
 
   def index
@@ -28,6 +28,11 @@ class TasksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @task.destroy!
+    redirect_to tasks_url, notice: "タスクを削除しました。", status: :see_other
   end
 
   private
