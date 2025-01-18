@@ -1,8 +1,10 @@
 .vstack.gap-2
   - if task.tags.exists?
     .hstack.gap-1
+      -# haml-lint:disable InlineStyles
       - task.tags.each do |tag|
         %span.badge{ style: "background-color: #{tag.color};" }= tag.name
+      -# haml-lint:enable InlineStyles
   %p.mb-0= task.name
   - if task.deadline_on.present?
     %small #{Task.human_attribute_name(:deadline_on)}: #{l(task.deadline_on)}

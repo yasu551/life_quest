@@ -1,8 +1,8 @@
 = simple_form_for achievement do |f|
   = f.input :name, autofocus: true
-  = f.input :description, input_html: { data: { controller: 'textarea-autogrow' } }
+  = f.input :description, input_html: { data: { controller: "textarea-autogrow" } }
   = f.association :parent, collection: achievements, label_method: :name, value_method: :id, include_blank: true
   = f.input :active
   = f.input :achieved_on, html5: true
-  = f.input :memo, input_html: { data: { controller: 'textarea-autogrow' } }
-  = f.button :submit, submit_button_label(achievement), class: 'btn btn-primary d-block w-100'
+  = f.input :memo, input_html: { data: { controller: "textarea-autogrow" } }
+  = f.button :submit, submit_button_label(achievement), class: "btn btn-primary d-block w-100"

@@ -7,7 +7,8 @@
       - ActivityEvaluation::VALUES.each do |value|
         - evaluation_value = value.to_s
         %li.nav-item
-          = link_to evaluation_value.capitalize, activities_path(evaluation_value:), class: class_names("nav-link", active: current_evaluation_value == evaluation_value)
+          = link_to evaluation_value.capitalize, activities_path(evaluation_value:),
+                    class: class_names("nav-link", active: current_evaluation_value == evaluation_value)
     .mb-3
       = link_to "新規作成", new_activity_path, class: "btn btn-primary"
     .list-group
