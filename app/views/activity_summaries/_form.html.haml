@@ -4,5 +4,7 @@
     = f.input :end_on, html5: true
   = render "application/markdown_textarea", f:, method: :content
   = render "application/markdown_textarea", f:, method: :memo
-  = f.association :activities, collection: activities, label_method: :name, value_method: :id
+  .vstack.gap-2.mb-4
+    = f.label :activities
+    = f.collection_select :activity_ids, activities, :id, :name, {}, { multiple: true, data: { controller: "slim-select" } }
   = f.button :submit, submit_button_label(activity_summary), class: "btn btn-primary d-block w-100"

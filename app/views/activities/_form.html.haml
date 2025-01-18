@@ -4,7 +4,9 @@
     .col-auto
       = f.input :performed_at, html5: true
     .col
-      = f.association :task, collection: tasks, label_method: :name, value_method: :id
+      .vstack.gap-2
+        = f.label :task
+        = f.collection_select :task_id, tasks, :id, :name, {}, { data: { controller: "slim-select" } }
   = render "application/markdown_textarea", f:, method: :memo
   = f.simple_fields_for :activity_evaluation do |ff|
     = ff.input :value, include_blank: false

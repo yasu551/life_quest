@@ -4,9 +4,11 @@
 
 import { application } from "./application"
 import MarkdownViewerController from "./markdown_viewer_controller"
+import SlimSelectController from "./slim_select_controller"
 import TextareaAutogrow from 'stimulus-textarea-autogrow'
 import ToastController from "./toast_controller"
 
 application.register("markdown-viewer", MarkdownViewerController)
+application.register("slim-select", SlimSelectController)
 application.register("textarea-autogrow", TextareaAutogrow)
 application.register("toast", ToastController)

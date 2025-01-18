@@ -4,7 +4,9 @@
   = render "application/markdown_textarea", f:, method: :memo
   .row
     .col
-      = f.association :parent, collection: achievements, label_method: :name, value_method: :id, include_blank: true
+      .vstack.gap-2
+        = f.label :parent
+        = f.collection_select :parent_id, achievements, :id, :name, {}, { data: { controller: "slim-select" } }
     .col-auto
       = f.input :achieved_on, html5: true
   = f.input :active

@@ -7,5 +7,7 @@
     = f.input :perform_on, html5: true
   = render "application/markdown_textarea", f:, method: :sub_tasks
   = render "application/markdown_textarea", f:, method: :memo
-  = f.association :tags, collection: tags, label_method: :name, value_method: :id
+  .vstack.gap-2.mb-4
+    = f.label :tags
+    = f.collection_select :tag_ids, tags, :id, :name, {}, { multiple: true, data: { controller: "slim-select" } }
   = f.button :submit, submit_button_label(task), class: "btn btn-primary d-block w-100"

@@ -25,7 +25,7 @@ class ActivitySummariesController < ApplicationController
 
   def update
     if @activity_summary.update(activity_summary_params)
-      redirect_to activity_summaries_url, notice: "行動サマリを更新しました。", status: :see_other
+      redirect_to activity_summary_url(@activity_summary), notice: "行動サマリを更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,6 +47,6 @@ class ActivitySummariesController < ApplicationController
   end
 
   def activity_summary_params
-    params.expect(activity_summary: [:start_on, :end_on, :content, :memo, activity_ids: []])
+    params.expect(activity_summary: [ :start_on, :end_on, :content, :memo, activity_ids: [] ])
   end
 end
