@@ -25,8 +25,8 @@
     - status_hash.each do |key, value|
       .w-25.d-flex.flex-column.align-items-center.gap-2
         .d-flex.justify-content-between.align-items-center.w-100.py-2.border-bottom
-          %h3.fs-4.mb-0.text-info= value
+          %p.my-1.fw-bold= value
           - if key == :new
-            = link_to "作成", new_task_path, class: "btn btn-secondary"
+            = link_to "作成", new_task_path, class: "btn btn-secondary btn-sm"
         = turbo_frame_tag "#{key}_tasks", class: "list-group w-100"
         = render "loading", status: key, page: params[:page].to_i + 1, tag_id: params[:tag_id], perform_on: params[:perform_on]
