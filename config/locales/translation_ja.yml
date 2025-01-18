@@ -46,6 +46,7 @@ ja:
       task:
         completion_condition: 完了条件
         deadline_on: 締切日
+        perform_on: 実行予定日
         memo: メモ
         name: 名前
         status: 状況

@@ -11,6 +11,7 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
   validates :deadline_on, date: { allow_blank: true }
+  validates :perform_on, date: { allow_blank: true }
 
   scope :default_order, -> { order(id: :desc) }
 

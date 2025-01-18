@@ -1,7 +1,10 @@
 .vstack.gap-2
-  .hstack.gap-1
-    - task.tags.each do |tag|
-      %span.badge{ style: "background-color: #{tag.color};" }= tag.name
+  - if task.tags.exists?
+    .hstack.gap-1
+      - task.tags.each do |tag|
+        %span.badge{ style: "background-color: #{tag.color};" }= tag.name
   %p.mb-0= task.name
   - if task.deadline_on.present?
     %small #{Task.human_attribute_name(:deadline_on)}: #{l(task.deadline_on)}
+  - if task.perform_on.present?
+    %small #{Task.human_attribute_name(:perform_on)}: #{l(task.perform_on)}
