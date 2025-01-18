@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
-      redirect_to activities_url, notice: "行動を更新しました。", status: :see_other
+      redirect_to edit_activity_url(@activity), notice: "行動を更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end

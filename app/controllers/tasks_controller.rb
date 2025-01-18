@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_url, notice: "タスクを更新しました。", status: :see_other
+      redirect_to edit_task_url(@task), notice: "タスクを更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end

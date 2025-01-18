@@ -27,7 +27,7 @@ class AchievementsController < ApplicationController
 
   def update
     if @achievement.update(achievement_params)
-      redirect_to achievements_url, notice: "実績を更新しました。", status: :see_other
+      redirect_to edit_achievement_url(@achievement), notice: "実績を更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
