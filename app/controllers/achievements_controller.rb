@@ -1,5 +1,5 @@
 class AchievementsController < ApplicationController
-  before_action :set_achievement, only: %i[ edit update ]
+  before_action :set_achievement, only: %i[ edit update destroy ]
   before_action :set_achievements, only: %i[ index new create edit update]
 
   def index
@@ -31,6 +31,11 @@ class AchievementsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @achievement.destroy!
+    redirect_to achievements_url, notice: "実績を削除しました。", status: :see_other
   end
 
   private

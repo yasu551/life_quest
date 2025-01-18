@@ -33,4 +33,8 @@ class Achievement < ApplicationRecord
       relation.public_send(scope_name)
     end
   end
+
+  def destroyable?
+    !children.exists? && !challenges.exists?
+  end
 end

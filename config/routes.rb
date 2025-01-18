@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # TODO: メール送信APIを使って、パスワードリセット機能を実装する
   # resources :passwords, param: :token, only: %i[ new create edit update ]
 
-  resources :achievements, only: %i[ index new create edit update ] do
+  resources :achievements, only: %i[ index new create edit update destroy ] do
     scope module: :achievements do
       resources :challenges, only: %i[ index new create edit update ]
     end
