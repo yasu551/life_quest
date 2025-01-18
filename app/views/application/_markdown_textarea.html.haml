@@ -1,0 +1,7 @@
+%div{ data: { controller: "markdown-viewer", markdown_viewer_visible_value: false } }
+  .hstack.gap-1
+    = f.label method.to_sym
+    %button.btn{ type: :button, data: { action: "markdown-viewer#toggleVisible" } }
+      %i.bi.bi-eye
+  = f.input method.to_sym, label: false, input_html: { data: { controller: "textarea-autogrow", markdown_viewer_target: :input } }
+  .d-none{ data: { markdown_viewer_target: :viewer } }
