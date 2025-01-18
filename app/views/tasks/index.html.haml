@@ -28,7 +28,5 @@
           %h3.fs-4.mb-0.text-info= value
           - if key == :new
             = link_to "作成", new_task_path, class: "btn btn-secondary"
-        .list-group.w-100
-          - @tasks.with_status(key).each do |task|
-            = link_to edit_task_path(task), class: "list-group-item list-group-item-action" do
-              = render 'task', task:
+        = turbo_frame_tag "#{key}_tasks", class: "list-group w-100"
+        = render "loading", status: key, page: params[:page].to_i + 1

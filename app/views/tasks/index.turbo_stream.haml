@@ -1,0 +1,9 @@
+- if @tasks&.exists?
+  = turbo_stream.append "#{@status}_tasks" do
+    - @tasks.each do |task|
+      = link_to edit_task_path(task), data: { turbo_frame: :_top }, class: "list-group-item list-group-item-action" do
+        = render 'task', task:
+  = turbo_stream.replace "#{@status}_task_loading" do
+    = render 'loading', status: @status, page: params[:page].to_i + 1
+- else
+  = turbo_stream.replace "#{@status}_task_loading"

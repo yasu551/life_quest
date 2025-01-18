@@ -1,0 +1,4 @@
+= turbo_frame_tag "#{status}_task_loading", src: tasks_path(status:, page:, format: :turbo_stream), lazy: true do
+  .d-flex.justify-content-center
+    .spinner-border{ role: :status }
+      %span.visually-hidden ロード中...

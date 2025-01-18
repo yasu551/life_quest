@@ -5,13 +5,21 @@ class TasksController < ApplicationController
 
   def index
     @tags = Current.user.tags.default_order
-    @tasks = Current.user.tasks.includes(:tags).default_order
-    if params[:tag_id].present?
-      tag = Current.user.tags.find(params[:tag_id])
-      @tasks = @tasks.tagged_with(tag)
-    end
-    if params[:perform_on].present?
-      @tasks = @tasks.scheduled_on(params[:perform_on])
+    respond_to do |format|
+      format.turbo_stream do
+        @status = params[:status]
+        if turbo_frame_request? && @status.present?
+          @tasks = Current.user.tasks.with_status(@status).includes(:tags).page(params[:page]).default_order
+          if params[:tag_id].present?
+            tag = Current.user.tags.find(params[:tag_id])
+            @tasks = @tasks.tagged_with(tag)
+          end
+          if params[:perform_on].present?
+            @tasks = @tasks.scheduled_on(params[:perform_on])
+          end
+        end
+      end
+      format.html
     end
   end
 
@@ -22,7 +30,7 @@ class TasksController < ApplicationController
   def create
     @task = Current.user.tasks.build(task_params)
     if @task.save
-      redirect_to tasks_url, notice: "タスクを作成しました。", status: :see_other
+      redirect_to tasks_url(format: :html), notice: "タスクを作成しました。", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
@@ -55,6 +63,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.expect(task: [:name, :completion_condition, :status, :deadline_on, :perform_on, :sub_tasks, :memo, tag_ids: []])
+    params.expect(task: [ :name, :completion_condition, :status, :deadline_on, :perform_on, :sub_tasks, :memo, tag_ids: [] ])
   end
 end

@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   extend Enumerize
 
+  paginates_per 10
+
   enumerize :status, in: %i[new waiting working completed pending], scope: true
 
   belongs_to :user
