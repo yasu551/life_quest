@@ -1,5 +1,5 @@
 class Activities::ChallengesController < Activities::BaseController
-  before_action :set_challenge, only: %i[ edit update ]
+  before_action :set_challenge, only: %i[ edit update destroy ]
 
   def index
     @challenges = @activity.challenges.default_order
@@ -37,6 +37,11 @@ class Activities::ChallengesController < Activities::BaseController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @challenge.destroy!
+    redirect_to edit_activity_url(@activity), notice: "小さな挑戦を削除しました。", status: :see_other
   end
 
   private
