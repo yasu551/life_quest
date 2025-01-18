@@ -4,7 +4,14 @@ class TasksController < ApplicationController
   before_action :set_tags, only: %i[ new create edit update ]
 
   def index
+    @tags = Current.user.tags.default_order
     @tasks = Current.user.tasks.default_order
+    if params[:tag_id].present?
+      tag = Current.user.tags.find(params[:tag_id])
+      @tasks = @tasks.tagged_with(tag)
+    elsif params[:perform_on].present?
+      @tasks = @tasks.scheduled_on(params[:perform_on])
+    end
   end
 
   def new
