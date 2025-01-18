@@ -42,6 +42,7 @@ gem "enumerize"
 gem "simple_form"
 gem "bigdecimal"
 gem "date_validator"
+gem "turbo-mount"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

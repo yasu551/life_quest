@@ -1,4 +1,7 @@
 = simple_form_for tag do |f|
   = f.input :name
-  = f.input :color
+  = f.label :color
+  = turbo_mount("HexColorPicker", props: { color: tag.color.presence || "#f00" }) do |controller_name|
+    %div{ "data-#{controller_name}-target": :mount }
+    = f.input :color, as: :hidden, input_html: { value: tag.color, "data-#{controller_name}-target": :input }
   = f.button :submit, submit_button_label(tag), class: 'btn btn-primary d-block w-100'
