@@ -1,4 +1,5 @@
 class ActivitySummariesController < ApplicationController
+  active_menu :activity_summary
   before_action :set_activity_summary, only: %i[ edit update destroy ]
   before_action :set_activities, only: %i[ new create edit update ]
 

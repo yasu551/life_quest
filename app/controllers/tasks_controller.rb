@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  active_menu :task
   before_action :set_task, only: %i[ edit update destroy ]
   before_action :set_tags, only: %i[ new create edit update ]
 

@@ -1,4 +1,5 @@
 class AchievementsController < ApplicationController
+  active_menu :achievement
   before_action :set_achievement, only: %i[ edit update destroy ]
   before_action :set_achievements, only: %i[ index new create edit update]
 

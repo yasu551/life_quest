@@ -6,14 +6,14 @@
     .collapse.navbar-collapse#navbar-nav
       %ul.navbar-nav
         %li.nav-item
-          = link_to "実績一覧", achievements_path, class: "nav-link"
+          = link_to "実績", achievements_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:achievement))
         %li.nav-item
-          = link_to "タスク一覧", tasks_path, class: "nav-link"
+          = link_to "タスク", tasks_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:task))
         %li.nav-item
-          = link_to "行動サマリ一覧", activity_summaries_path, class: "nav-link"
+          = link_to "行動サマリ", activity_summaries_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:activity_summary))
         %li.nav-item
-          = link_to "行動一覧", activities_path, class: "nav-link"
+          = link_to "行動", activities_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:activity))
         %li.nav-item
-          = link_to "タグ一覧", tags_path, class: "nav-link"
+          = link_to "タグ", tags_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:tag))
         %li.nav-item
-          = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "btn btn-danger"
+          = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "nav-link"

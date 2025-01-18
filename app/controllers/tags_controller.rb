@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  active_menu :tag
   before_action :set_tag, only: %i[ edit update destroy ]
 
   def index

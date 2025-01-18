@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  active_menu :activity
   before_action :set_activity, only: %i[ edit update destroy ]
   before_action :set_tasks, only: %i[ new create edit update ]
 
