@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :achievements, dependent: :restrict_with_exception
   has_many :achievement_challenges, through: :achievements, source: :challenges
   has_many :tasks, dependent: :restrict_with_exception
-  has_many :activities, through: :tasks
+  has_many :activities, dependent: :restrict_with_exception
   has_many :activity_summaries, dependent: :restrict_with_exception
   has_many :activity_challenges, through: :activities, source: :challenges
   has_many :tags, dependent: :restrict_with_exception
