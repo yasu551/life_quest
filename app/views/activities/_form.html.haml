@@ -1,9 +1,12 @@
 = simple_form_for activity do |f|
   = f.input :name, autofocus: true
-  = f.association :task, collection: tasks, label_method: :name, value_method: :id
-  = f.input :performed_at, html5: true
+  .row
+    .col-auto
+      = f.input :performed_at, html5: true
+    .col
+      = f.association :task, collection: tasks, label_method: :name, value_method: :id
+  = render "application/markdown_textarea", f:, method: :memo
   = f.simple_fields_for :activity_evaluation do |ff|
     = ff.input :value, include_blank: false
     = render "application/markdown_textarea", f: ff, method: :reason
-  = render "application/markdown_textarea", f:, method: :memo
   = f.button :submit, submit_button_label(activity), class: "btn btn-primary d-block w-100"

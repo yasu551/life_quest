@@ -1,8 +1,11 @@
 = simple_form_for achievement do |f|
   = f.input :name, autofocus: true
   = render "application/markdown_textarea", f:, method: :description
-  = f.association :parent, collection: achievements, label_method: :name, value_method: :id, include_blank: true
-  = f.input :active
-  = f.input :achieved_on, html5: true
   = render "application/markdown_textarea", f:, method: :memo
+  .row
+    .col
+      = f.association :parent, collection: achievements, label_method: :name, value_method: :id, include_blank: true
+    .col-auto
+      = f.input :achieved_on, html5: true
+  = f.input :active
   = f.button :submit, submit_button_label(achievement), class: "btn btn-primary d-block w-100"
