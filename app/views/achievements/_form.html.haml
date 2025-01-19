@@ -6,7 +6,10 @@
     .col
       .vstack.gap-2
         = f.label :parent
-        = f.collection_select :parent_id, achievements, :id, :name, {}, { data: { controller: "slim-select" } }
+        = f.collection_select :parent_id, achievements, :id, :name, { include_blank: true }, { data: { controller: "slim-select" } }
+    - if achievement.persisted?
+      .col.d-flex.align-items-end
+        .mb-3= link_to "中間実績を作成", new_achievement_path(child_achievement_id: achievement.id), class: "btn btn-secondary"
     .col-auto
       = f.input :achieved_on, html5: true
   = f.input :active

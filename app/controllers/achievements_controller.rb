@@ -12,7 +12,15 @@ class AchievementsController < ApplicationController
   end
 
   def new
-    @achievement = Current.user.achievements.build
+    child_achievement_id = params[:child_achievement_id]
+    if child_achievement_id.present?
+      child_achievement = @achievements.find(child_achievement_id)
+      @achievement = child_achievement.build_intermediate
+    else
+      @achievement = @achievements.build
+    end
+  rescue StandardError => e
+    redirect_to request.referer, alert: e.message, status: :see_other
   end
 
   def create

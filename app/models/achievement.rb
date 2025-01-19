@@ -37,4 +37,39 @@ class Achievement < ApplicationRecord
   def destroyable?
     !children.exists? && !challenges.exists?
   end
+
+  def build_intermediate
+    message_content = <<~CONTENT
+      以下の情報をもとに、親と子の中間の実績に必要な情報を出力してください。
+
+      Input:
+      {
+        [
+          "parent_achievement"": {
+            "name"": "#{parent.name}",
+            "description": "#{parent.description}",
+            "memo": "#{parent.memo}"
+          },
+          "child_achievement": {
+            "name": "#{name}",
+            "description": "#{description}",
+            "memo": "#{memo}"
+          }
+        ]
+      }
+    CONTENT
+    yml = YAML.load_file(Rails.root.join("app/models/achievement/build_intermediate_prompt.yml")).deep_symbolize_keys
+    messages = yml[:messages]
+    messages << { role: :user, content: message_content }
+    client = OpenAI::Client.new
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o",
+        messages:
+      }
+    )
+    content = response.dig("choices", 0, "message", "content")
+    content_json = JSON.parse(content).deep_symbolize_keys
+    parent.children.build(user:, name: content_json[:name], description: content_json[:description], memo: content_json[:memo])
+  end
 end

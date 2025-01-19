@@ -39,3 +39,9 @@
 /node_modules
 /.idea
 /.kamal/registry_password.key
+
+/config/credentials/development.key
+
+/config/credentials/test.key
+
+/config/credentials/production.key
