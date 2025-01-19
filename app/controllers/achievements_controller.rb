@@ -12,8 +12,12 @@ class AchievementsController < ApplicationController
   end
 
   def new
+    parent_achievement_id = params[:parent_achievement_id]
     child_achievement_id = params[:child_achievement_id]
-    if child_achievement_id.present?
+    if parent_achievement_id.present?
+      parent_achievement = @achievements.find(parent_achievement_id)
+      @achievement = parent_achievement.build_child
+    elsif child_achievement_id.present?
       child_achievement = @achievements.find(child_achievement_id)
       @achievement = child_achievement.build_intermediate
     else
