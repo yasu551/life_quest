@@ -27,7 +27,6 @@
     "react-dom": "^19.0.0",
     "sass": "^1.83.1",
     "slim-select": "^2.10.0",
-    "stimulus-textarea-autogrow": "^4.1.0",
     "turbo-mount": "^0.4.1"
   },
   "browserslist": [

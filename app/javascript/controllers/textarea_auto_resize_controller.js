@@ -1,9 +1,8 @@
 import {Controller} from "@hotwired/stimulus"
-import SlimSelect from "slim-select"
 
 export default class extends Controller {
   connect() {
-    this.create();
+    this.resize();
     this.reconnect = this.reconnect.bind(this);
     window.addEventListener("turbo:morph", this.reconnect);
   }
@@ -13,15 +12,11 @@ export default class extends Controller {
   }
 
   reconnect() {
-    this.create();
+    this.resize();
   }
 
-  create() {
-    if (this.slimSelect) {
-      this.slimSelect.destroy();
-    }
-    this.slimSelect = new SlimSelect({
-      select: this.element,
-    });
+  resize() {
+    this.element.style.height = "auto";
+    this.element.style.height = `${this.element.scrollHeight}px`;
   }
 }
