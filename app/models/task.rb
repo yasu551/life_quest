@@ -32,7 +32,9 @@ class Task < ApplicationRecord
   def update_and_create_time_entries(params)
     transaction do
       update(params)
-      create_time_entries_from_sub_tasks_difference
+      if saved_change_to_sub_tasks?
+        create_time_entries_from_sub_tasks_difference
+      end
     end
   end
 
