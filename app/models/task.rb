@@ -29,6 +29,13 @@ class Task < ApplicationRecord
     save
   end
 
+  def update_and_create_time_entries(params)
+    transaction do
+      update(params)
+      create_time_entries_from_sub_tasks_difference
+    end
+  end
+
   private
 
   def generate_sub_tasks
@@ -51,5 +58,34 @@ class Task < ApplicationRecord
       }
     )
     response.dig("choices", 0, "message", "content")
+  end
+
+  def create_time_entries_from_sub_tasks_difference
+    message_content = <<~CONTENT
+      以下の情報をもとに、サブタスクの差分から分報を出力してください。
+
+      Input:
+      - 1つ前のサブタスク:
+        #{sub_tasks_before_last_save}
+      - 現在のサブタスク:
+        #{sub_tasks}
+    CONTENT
+    yml = YAML.load_file(Rails.root.join("app/models/task/create_time_entries_from_sub_tasks_difference_prompt.yml")).deep_symbolize_keys
+    messages = yml[:messages]
+    messages << { role: :user, content: message_content }
+    client = OpenAI::Client.new
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o",
+        messages:
+      }
+    )
+    content = response.dig("choices", 0, "message", "content")
+    time_entry_contents = JSON.parse(content)
+    transaction do
+      time_entry_contents.each do |content|
+        time_entries.create!(content:)
+      end
+    end
   end
 end
