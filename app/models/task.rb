@@ -22,4 +22,34 @@ class Task < ApplicationRecord
   def destroyable?
     !time_entries.exists? && !activities.exists?
   end
+
+  def update_with_generated_sub_tasks(params)
+    self.attributes = params
+    self.sub_tasks = generate_sub_tasks
+    save
+  end
+
+  private
+
+  def generate_sub_tasks
+    message_content = <<~CONTENT
+      以下の情報をもとに、サブタスクを出力してください。
+
+      Input:
+      タスク名: #{name}
+      完了条件:
+      #{completion_condition}
+    CONTENT
+    yml = YAML.load_file(Rails.root.join("app/models/task/generate_sub_tasks_prompt.yml")).deep_symbolize_keys
+    messages = yml[:messages]
+    messages << { role: :user, content: message_content }
+    client = OpenAI::Client.new
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o",
+        messages:
+      }
+    )
+    response.dig("choices", 0, "message", "content")
+  end
 end

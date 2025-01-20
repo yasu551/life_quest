@@ -10,4 +10,7 @@
   .vstack.gap-2.mb-4
     = f.label :tags
     = f.collection_select :tag_ids, tags, :id, :name, {}, { multiple: true, data: { controller: "slim-select" } }
-  = f.button :submit, submit_button_label(task), class: "btn btn-primary d-block w-100"
+  .d-grid.gap-3
+    = f.button :submit, submit_button_label(task), class: "btn btn-primary"
+    - if task.persisted?
+      = f.button :submit, "サブタスクを生成して更新", name: :sub_tasks, class: "btn btn-primary"
