@@ -16,6 +16,7 @@
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = debugbar_head if defined? Debugbar
   %body
     - if authenticated?
       = render "layouts/nav"
@@ -23,3 +24,4 @@
     = yield
     - if Rails.env.local?
       = render "layouts/rails-template-inspector"
+    = debugbar_body cable: { url: "wss://#{ENV["RAILS_DEVELOPMENT_HOSTS"]}" } if defined? Debugbar

@@ -98,6 +98,9 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debugbar (0.4.2)
+      actioncable
+      rails
     diff-lcs (1.5.1)
     dotenv (3.1.7)
     drb (2.2.1)
@@ -447,6 +450,7 @@ DEPENDENCIES
   database_consistency
   date_validator
   debug
+  debugbar
   dotenv
   enumerize
   factory_bot_rails
