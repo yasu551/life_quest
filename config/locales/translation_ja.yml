@@ -94,6 +94,7 @@ ja:
         source: :activerecord.models.source  #g
         source_type: source_type  #g
         active: 有効にする？
+        memo: メモ
 
       tag:
         name: 名前

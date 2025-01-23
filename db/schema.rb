@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_145809) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_23_041139) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -76,6 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_145809) do
     t.integer "source_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "memo", default: "", null: false
     t.index ["source_type", "source_id"], name: "index_challenges_on_source"
   end
 

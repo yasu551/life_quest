@@ -51,6 +51,6 @@ class Achievements::ChallengesController < Achievements::BaseController
   end
 
   def challenge_params
-    params.expect(challenge: %i[ name description perform_at performed_at active ])
+    params.expect(challenge: %i[ name description perform_at performed_at active memo])
   end
 end
