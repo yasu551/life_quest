@@ -3,7 +3,7 @@
     %p.mb-0.pb-1.border-bottom.fw-bold 絞り込み
     = form_with url: tasks_path, method: :get, class: "hstack gap-4 align-items-center" do |f|
       - if @tags.exists?
-        .hstack.gap-2.align-items-center
+        .hstack.gap-2.align-items-center.w-50.overflow-x-auto
           %small= Task.model_name.human
           = f.collection_radio_buttons :tag_id, @tags, :id, :name, { checked: params[:tag_id] } do |b|
             - id = "tag_id_#{b.object.id}"
