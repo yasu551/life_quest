@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy!
-    redirect_to tasks_url, notice: "タスクを削除しました。", status: :see_other
+    redirect_to tasks_url(format: :html), notice: "タスクを削除しました。", status: :see_other
   end
 
   private
