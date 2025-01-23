@@ -40,7 +40,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    if params[:sub_tasks].present? ? @task.update_with_generated_sub_tasks(task_params) : @task.update_and_create_time_entries(task_params)
+    updated =
+      if params[:time_entries].present?
+        @task.update_and_create_time_entries(task_params)
+      elsif params[:sub_tasks].present?
+        @task.update_with_generated_sub_tasks(task_params)
+      else
+        @task.update(task_params)
+      end
+    if updated
       redirect_to edit_task_url(@task), notice: "タスクを更新しました。"
     else
       render :edit, status: :unprocessable_entity
