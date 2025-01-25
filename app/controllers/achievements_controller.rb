@@ -4,8 +4,8 @@ class AchievementsController < ApplicationController
   before_action :set_achievements, only: %i[ index new create edit update]
 
   def index
+    @achievements = @achievements.page(params[:page]).default_order
     scope_chains = params&.dig(:scope_chains)
-    @achievements = @achievements.page(params[:page])
     if scope_chains.present?
       @achievements = @achievements.applied_scopes(scope_chains)
     end
