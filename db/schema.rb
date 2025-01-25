@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_25_141453) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_25_142442) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_25_141453) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "performed_at", null: false
+    t.datetime "performed_at"
     t.text "memo", default: "", null: false
     t.integer "task_id"
     t.datetime "created_at", null: false

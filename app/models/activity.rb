@@ -6,7 +6,6 @@ class Activity < ApplicationRecord
   has_many :challenges, as: :source, dependent: :restrict_with_exception
 
   validates :name, presence: true
-  validates :performed_at, presence: true
 
   scope :default_order, -> { order(performed_at: :desc, id: :desc) }
   scope :by_evaluation_value, ->(value) do
