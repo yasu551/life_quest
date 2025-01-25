@@ -14,6 +14,9 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :deadline_on, date: { allow_blank: true }
   validates :perform_on, date: { allow_blank: true }
+  validates :completed_on, date: { allow_blank: true }
+
+  before_validation :set_completed_on, if: -> { status.completed? }
 
   scope :default_order, -> { order(Arel.sql("deadline_on ASC NULLS LAST, perform_on ASC NULLS LAST, id DESC")) }
   scope :scheduled_on, ->(date) { where(perform_on: date) }
@@ -39,6 +42,10 @@ class Task < ApplicationRecord
   end
 
   private
+
+  def set_completed_on
+    self.completed_on = Date.current
+  end
 
   def generate_sub_tasks
     message_content = <<~CONTENT
