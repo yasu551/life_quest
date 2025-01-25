@@ -9,4 +9,4 @@
       - if @achievement.destroyable?
         = button_to "削除", achievement_path(@achievement), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger"
   .col-md-6.col-11
-    = turbo_frame_tag dom_id(@achievement, :challenges), src: achievement_challenges_path(@achievement)
+    = turbo_frame_tag dom_id(@achievement, :challenges), src: achievement_challenges_path(@achievement, scope_chains: "active.unperformed")

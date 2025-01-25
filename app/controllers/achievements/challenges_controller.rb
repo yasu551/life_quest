@@ -3,16 +3,10 @@ class Achievements::ChallengesController < Achievements::BaseController
 
   def index
     @challenges = @achievement.challenges.page(params[:page]).default_order
-    active = params&.dig(:active)
-    @challenges =
-      case active
-      when "true"
-        @challenges.where(active: true)
-      when "false"
-        @challenges.where(active: false)
-      else
-        @challenges
-      end
+    scope_chains = params&.dig(:scope_chains)
+    if scope_chains.present?
+      @challenges = @challenges.applied_scopes(scope_chains)
+    end
   end
 
   def new

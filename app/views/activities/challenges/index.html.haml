@@ -2,12 +2,21 @@
   .vstack
     %h2.fs-4.my-4 小さな挑戦
     %ul.nav.nav-tabs.mb-3
-      - current_active = params[:active]
+      - current_scope_chains = params[:scope_chains]
       %li.nav-item
-        = link_to "全て", activity_challenges_path(@activity), class: class_names("nav-link", active: current_active.nil?)
-      - [ %w[ 有効 true ], %w[ 無効 false ] ].each do |label, active|
-        %li.nav-item
-          = link_to label, activity_challenges_path(@activity, active:), class: class_names("nav-link", active: current_active == active)
+        - scope_chains = "active.unperformed"
+        = link_to "未実行", activity_challenges_path(@activity, scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "active.performed"
+        = link_to "実行済み", activity_challenges_path(@activity, scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "inactive"
+        = link_to "無効", activity_challenges_path(@activity, scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        = link_to "全て", activity_challenges_path(@activity), class: class_names("nav-link", active: current_scope_chains.blank?)
     .vstack.gap-2
       = link_to "新規作成", new_activity_challenge_path(@activity), data: { turbo_frame: :_top }, class: "btn btn-secondary"
       .vstack.mb-3
