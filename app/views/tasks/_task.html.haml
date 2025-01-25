@@ -8,5 +8,7 @@
   %p.mb-0= task.name
   - if task.deadline_on.present?
     %small #{Task.human_attribute_name(:deadline_on)}: #{l(task.deadline_on)}
+  - if task.status.completed?
+    %small #{Task.human_attribute_name(:completed_on)}: #{l(task.completed_on)}
   - if task.perform_on.present?
     %small #{Task.human_attribute_name(:perform_on)}: #{l(task.perform_on)}
