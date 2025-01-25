@@ -1,14 +1,17 @@
 .row.justify-content-center.align-items-center.mt-5
   .col-md-6.col-11
     %ul.nav.nav-tabs.mb-3
-      - current_evaluation_value = params[:evaluation_value]
+      - current_scope_chains = params[:scope_chains]
       %li.nav-item
-        = link_to "全て", activities_path, class: class_names("nav-link", active: current_evaluation_value.blank?)
+        - scope_chains = "scheduled"
+        = link_to "実行予定", activities_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
       - ActivityEvaluation::VALUES.each do |value|
-        - evaluation_value = value.to_s
+        - scope_chains = "performed.#{value}"
         %li.nav-item
-          = link_to evaluation_value.capitalize, activities_path(evaluation_value:),
-                    class: class_names("nav-link", active: current_evaluation_value == evaluation_value)
+          = link_to value.to_s.capitalize, activities_path(scope_chains:),
+                    class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        = link_to "全て", activities_path, class: class_names("nav-link", active: current_scope_chains.blank?)
     .mb-3
       = link_to "新規作成", new_activity_path, class: "btn btn-primary"
     .list-group.mb-3

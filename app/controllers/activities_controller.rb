@@ -5,9 +5,9 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Current.user.activities.page(params[:page]).default_order
-    evaluation_value = params&.dig(:evaluation_value)
-    if evaluation_value.present?
-      @activities = @activities.by_evaluation_value(evaluation_value)
+    scope_chains = params&.dig(:scope_chains)
+    if scope_chains.present?
+      @activities = @activities.applied_scopes(scope_chains)
     end
   end
 

@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
+  APPLICABLE_SCOPE_NAMES = %w[scheduled performed good neutral bad].freeze
+
   belongs_to :user
   belongs_to :task, optional: true
   has_one :activity_evaluation, dependent: :destroy
@@ -8,9 +10,17 @@ class Activity < ApplicationRecord
   validates :name, presence: true
 
   scope :default_order, -> { order(performed_at: :desc, id: :desc) }
+  scope :scheduled, -> { where(performed_at: nil).where.not(perform_at: nil) }
+  scope :performed, -> { where.not(performed_at: nil) }
   scope :by_evaluation_value, ->(value) do
     raise ArgumentError, "Invalid value: #{value}" unless ActivityEvaluation::VALUES.include?(value.to_sym)
 
     joins(:activity_evaluation).where(activity_evaluation: { value: })
+  end
+  scope :good, -> { by_evaluation_value(:good) }
+  scope :neutral, -> { by_evaluation_value(:neutral) }
+  scope :bad, -> { by_evaluation_value(:bad) }
+  scope :applied_scopes, ->(scope_chains) do
+    AppliedScopesQuery.new(self, APPLICABLE_SCOPE_NAMES).resolve(scope_chains)
   end
 end
