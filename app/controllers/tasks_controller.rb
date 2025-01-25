@@ -17,6 +17,9 @@ class TasksController < ApplicationController
           if params[:perform_on].present?
             @tasks = @tasks.scheduled_on(params[:perform_on])
           end
+          if params[:completed_on].present?
+            @tasks = @tasks.completed_on(params[:completed_on])
+          end
         end
       end
       format.html

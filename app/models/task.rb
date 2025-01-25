@@ -20,6 +20,7 @@ class Task < ApplicationRecord
 
   scope :default_order, -> { order(Arel.sql("deadline_on ASC NULLS LAST, completed_on ASC NULLS LAST, perform_on ASC NULLS LAST, id DESC")) }
   scope :scheduled_on, ->(date) { where(perform_on: date) }
+  scope :completed_on, ->(date) { where(completed_on: date) }
   scope :tagged_with, ->(tag) { where(id: TaskTagging.where(tag:).select(:task_id)) }
 
   def destroyable?

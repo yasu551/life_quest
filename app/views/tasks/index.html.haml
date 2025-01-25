@@ -18,6 +18,12 @@
         .col-auto
           = f.date_field :perform_on, value: params[:perform_on], html5: true, class: "form-control"
       .vr
+      .row.g-3.align-items-center
+        .col-auto
+          = f.label :completed_on, Task.human_attribute_name(:completed_on)
+        .col-auto
+          = f.date_field :completed_on, value: params[:completed_on], html5: true, class: "form-control"
+      .vr
       = f.submit "絞り込み", class: "btn btn-secondary btn-sm"
       = link_to "リセット", tasks_path, class: "btn btn-dark btn-sm"
   .d-flex.gap-2
@@ -29,4 +35,5 @@
           - if key == :new
             = link_to "作成", new_task_path, class: "btn btn-secondary btn-sm"
         = turbo_frame_tag "#{key}_tasks", class: "list-group w-100"
-        = render "loading", status: key, page: params[:page].to_i + 1, tag_id: params[:tag_id], perform_on: params[:perform_on]
+        = render "loading", status: key, page: params[:page].to_i + 1, tag_id: params[:tag_id],
+          perform_on: params[:perform_on], completed_on: params[:completed_on]
