@@ -23,15 +23,7 @@ class Achievement < ApplicationRecord
       .or(not_achieved.terminal)
   end
   scope :applied_scopes, ->(scope_chains) do
-    scope_names = scope_chains.split(".")
-    invalid_scope_names = scope_names - APPLICABLE_SCOPE_NAMES
-    if invalid_scope_names.present?
-      raise ArgumentError, "#{invalid_scope_names.join(", ")} is invalid"
-    end
-
-    scope_names.inject(self) do |relation, scope_name|
-      relation.public_send(scope_name)
-    end
+    AppliedScopesQuery.new(self, APPLICABLE_SCOPE_NAMES).resolve(scope_chains)
   end
 
   def destroyable?
