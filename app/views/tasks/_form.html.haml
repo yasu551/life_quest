@@ -1,10 +1,11 @@
 = simple_form_for task do |f|
   = f.input :name, autofocus: true
   = render "application/markdown_textarea", f:, method: :completion_condition
-  .hstack.gap-2
+  .hstack.gap-2.flex-wrap
     = f.input :status, include_blank: false
     = f.input :deadline_on, html5: true
     = f.input :perform_on, html5: true
+    = f.input :completed_on, html5: true
   = render "application/markdown_textarea", f:, method: :sub_tasks
   = render "application/markdown_textarea", f:, method: :memo
   .vstack.gap-2.mb-4
