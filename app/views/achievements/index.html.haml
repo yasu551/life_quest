@@ -3,8 +3,6 @@
     %ul.nav.nav-tabs.mb-3
       - current_scope_chains = params[:scope_chains]
       %li.nav-item
-        = link_to "全て", achievements_path, class: class_names("nav-link", active: current_scope_chains.blank?)
-      %li.nav-item
         - scope_chains = "active.ideal"
         = link_to "理想", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
       %li.nav-item
@@ -16,6 +14,8 @@
       %li.nav-item
         - scope_chains = "active.not_achieved"
         = link_to "未達成", achievements_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        = link_to "全て", achievements_path, class: class_names("nav-link", active: current_scope_chains.blank?)
     .mb-3
       = link_to "新規作成", new_achievement_path, class: "btn btn-primary"
     .list-group.mb-3

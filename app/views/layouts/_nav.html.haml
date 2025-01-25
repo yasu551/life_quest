@@ -6,7 +6,8 @@
     .collapse.navbar-collapse#navbar-nav
       %ul.navbar-nav
         %li.nav-item
-          = link_to "実績", achievements_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:achievement))
+          = link_to "実績", achievements_path(scope_chains: "active.ideal"),
+                    class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:achievement))
         %li.nav-item
           = link_to "タスク", tasks_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:task))
         %li.nav-item
