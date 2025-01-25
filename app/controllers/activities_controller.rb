@@ -52,6 +52,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.expect(activity: [ :name, :task_id, :performed_at, :memo, activity_evaluation_attributes: %i[ value reason ] ])
+    params.expect(activity: [ :name, :task_id, :perform_at, :performed_at, :memo, activity_evaluation_attributes: %i[ value reason ] ])
   end
 end

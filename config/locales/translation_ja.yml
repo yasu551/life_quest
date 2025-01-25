@@ -60,7 +60,8 @@ ja:
       activity:
         memo: メモ
         name: 名前
-        performed_at: 日時
+        perform_at: 実行予定日時
+        performed_at: 実行日時
         task: タスク
         activity_evaluation: :activerecord.models.activity_evaluation  #g
         challenges: challenges  #g
