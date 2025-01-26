@@ -1,7 +1,17 @@
 .row.justify-content-center.align-items-center.mt-5
   .col-md-6.col-11
-    .mb-3
-      = link_to "新規作成", new_activity_summary_path, class: "btn btn-primary"
+    = form_with url: new_activity_summary_path, method: :get, class: "hstack gap-4 align-items-center mb-3" do |f|
+      .row.g-3.align-items-center
+        .col-auto
+          = f.label :start_on, ActivitySummary.human_attribute_name(:start_on)
+        .col-auto
+          = f.date_field :start_on, html5: true, class: "form-control"
+      .row.g-3.align-items-center
+        .col-auto
+          = f.label :end_on, ActivitySummary.human_attribute_name(:end_on)
+        .col-auto
+          = f.date_field :end_on, html5: true, class: "form-control"
+      = f.submit "新規作成", class: "btn btn-primary"
     .list-group.mb-3
       - @activity_summaries.each do |activity_summary|
         = link_to edit_activity_summary_path(activity_summary), class: "list-group-item list-group-item-action" do

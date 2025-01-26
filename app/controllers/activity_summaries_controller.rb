@@ -8,7 +8,14 @@ class ActivitySummariesController < ApplicationController
   end
 
   def new
-    @activity_summary = Current.user.activity_summaries.build
+    start_on = params[:start_on]&.to_date
+    end_on = params[:end_on]&.to_date
+    @activity_summary =
+      if start_on.present? && end_on.present?
+        Current.user.activity_summaries.build_from(user: Current.user, start_on: start_on, end_on: end_on)
+      else
+        Current.user.activity_summaries.build
+      end
   end
 
   def create
