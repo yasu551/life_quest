@@ -16,7 +16,7 @@ class TagsController < ApplicationController
     if @tag.save
       redirect_to tags_url, notice: "タグを作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -27,7 +27,7 @@ class TagsController < ApplicationController
     if @tag.update(tag_params)
       redirect_to tags_url, notice: "タグを更新しました。", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

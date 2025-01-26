@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to activities_url, notice: "行動を作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -32,7 +32,7 @@ class ActivitiesController < ApplicationController
     if @activity.update(activity_params)
       redirect_to edit_activity_url(@activity), notice: "行動を更新しました。"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

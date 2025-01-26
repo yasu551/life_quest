@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_url(format: :html), notice: "タスクを作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -54,7 +54,7 @@ class TasksController < ApplicationController
     if updated
       redirect_to edit_task_url(@task), notice: "タスクを更新しました。"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

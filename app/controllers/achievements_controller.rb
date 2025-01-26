@@ -32,7 +32,7 @@ class AchievementsController < ApplicationController
     if @achievement.save
       redirect_to achievements_url, notice: "実績を作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -43,7 +43,7 @@ class AchievementsController < ApplicationController
     if @achievement.update(achievement_params)
       redirect_to edit_achievement_url(@achievement), notice: "実績を更新しました。"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

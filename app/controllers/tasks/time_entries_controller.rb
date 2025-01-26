@@ -11,7 +11,7 @@ class Tasks::TimeEntriesController < Tasks::BaseController
     if @time_entry.save
       redirect_to task_time_entries_url(@task), notice: "分報を作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -22,7 +22,7 @@ class Tasks::TimeEntriesController < Tasks::BaseController
     if @time_entry.update(time_entry_params)
       redirect_to task_time_entries_url(@task), notice: "分報を更新しました。", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

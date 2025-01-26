@@ -16,7 +16,7 @@ class ActivitySummariesController < ApplicationController
     if @activity_summary.save
       redirect_to activity_summaries_url, notice: "行動サマリを作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -27,7 +27,7 @@ class ActivitySummariesController < ApplicationController
     if @activity_summary.update(activity_summary_params)
       redirect_to activity_summary_url(@activity_summary), notice: "行動サマリを更新しました。"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

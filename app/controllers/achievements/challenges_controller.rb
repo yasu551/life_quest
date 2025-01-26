@@ -18,7 +18,7 @@ class Achievements::ChallengesController < Achievements::BaseController
     if @challenge.save
       redirect_to edit_achievement_url(@achievement), notice: "小さな挑戦を作成しました。", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -29,7 +29,7 @@ class Achievements::ChallengesController < Achievements::BaseController
     if @challenge.update(challenge_params)
       redirect_to edit_achievement_url(@achievement), notice: "小さな挑戦を更新しました。", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
