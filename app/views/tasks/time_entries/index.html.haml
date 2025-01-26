@@ -1,6 +1,8 @@
 = turbo_frame_tag dom_id(@task, :time_entries) do
   .vstack
-    %h2.fs-4.my-4 分報
+    .hstack.justify-content-between
+      %h2.fs-4.my-4 分報
+      = link_to "行動を作成", new_task_performed_activity_path(@task), data: { turbo_frame: :_top }, class: "btn btn-info"
     .vstack.gap-3
       = render "form", task: @task, time_entry: @time_entry
       %hr.m-0

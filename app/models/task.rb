@@ -42,6 +42,42 @@ class Task < ApplicationRecord
     end
   end
 
+  def create_performed_activities!(date:)
+    target_time_entries = time_entries.where(created_at: date.all_day)
+    return unless target_time_entries.exists?
+
+    message_content = <<~CONTENT
+      以下の情報をもとに、行動に関する情報を出力してください。
+
+      Input:
+      {
+         "name": "#{name}",
+         "completion_condition": "#{completion_condition}",
+         "time_entries":
+           #{target_time_entries.to_json(only: %i[content created_at])}
+      }
+    CONTENT
+    yml = YAML.load_file(Rails.root.join("app/models/task/create_activities_prompt.yml")).deep_symbolize_keys
+    messages = yml[:messages]
+    messages << { role: :user, content: message_content }
+    client = OpenAI::Client.new
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o",
+        messages:
+      }
+    )
+    content = response.dig("choices", 0, "message", "content")
+    activities_hash = JSON.parse(content)
+    transaction do
+      activities_hash.each do |activity_hash|
+        activities.create!(activity_hash)
+      end
+    end
+  rescue => e
+    logger.warn "Failed to create activities: #{e.message}"
+  end
+
   private
 
   def set_completed_on

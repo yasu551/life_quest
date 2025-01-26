@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tasks, only: %i[ index new create edit update destroy] do
     scope module: :tasks do
       resources :time_entries, only: %i[ index create edit update destroy ]
+      resources :performed_activities, only: %i[ new create ]
     end
   end
   resources :activities, only: %i[ index new create edit update destroy ] do
