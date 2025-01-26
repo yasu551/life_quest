@@ -39,7 +39,7 @@ class ScheduledActivityForm < ApplicationForm
   def submit!
     user = User.find(user_id)
     scheduled_dates.each do |date|
-      perform_at = Time.new(date.year, date.month, date.day, time.hour, time.min)
+      perform_at = Time.zone.local(date.year, date.month, date.day, time.hour, time.min)
       activity = user.activities.build(name:, perform_at:, memo:)
       activity.build_activity_evaluation
       activity.save!
