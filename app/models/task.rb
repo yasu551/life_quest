@@ -71,7 +71,9 @@ class Task < ApplicationRecord
     activities_hash = JSON.parse(content)
     transaction do
       activities_hash.each do |activity_hash|
-        activities.create!(activity_hash)
+        activity = activities.build(user:, **activity_hash)
+        activity.build_activity_evaluation
+        activity.save!
       end
     end
   rescue => e
