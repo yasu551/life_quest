@@ -18,5 +18,5 @@
     .list-group.mb-3
       - @activities.each do |activity|
         = link_to edit_activity_path(activity), class: "list-group-item list-group-item-action" do
-          %span= activity.name
+          = render "activity", activity:
     = paginate @activities

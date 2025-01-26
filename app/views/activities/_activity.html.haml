@@ -1,0 +1,7 @@
+.vstack.gap-2
+  %p.mb-0= activity.name
+  .hstack.gap-2
+    - if activity.performed_at.present?
+      %small #{Activity.human_attribute_name(:performed_at)}: #{l(activity.performed_at, format: :long)}
+    - if activity.perform_at.present?
+      %small #{Activity.human_attribute_name(:perform_at)}: #{l(activity.perform_at, format: :long)}
