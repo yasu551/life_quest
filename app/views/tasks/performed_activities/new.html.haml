@@ -2,6 +2,7 @@
   .col-md-6.col-11
     %h1.fs-2.text-center.my-4 分報から行動を作成
     %p タスク名: #{@task.name}
+    %p 指定可能な実行日: #{@task.time_entries.where(consumed: false).pluck(:created_at).map { l(it.to_date) }.uniq.join(", ")}
     = simple_form_for :performed_activities, url: task_performed_activities_path(@task), html: { class: "mb-3" } do |f|
       = f.input :performed_on, label: "実行日", as: :date, html5: true
       = f.button :submit, "作成", class: "btn btn-primary d-block w-100"

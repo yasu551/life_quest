@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_25_142442) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_26_200510) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -129,6 +129,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_25_142442) do
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "consumed", default: false, null: false
     t.index ["task_id", "created_at"], name: "index_time_entries_on_task_id_and_created_at"
   end
 

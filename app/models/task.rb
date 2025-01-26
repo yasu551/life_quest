@@ -43,7 +43,7 @@ class Task < ApplicationRecord
   end
 
   def create_performed_activities!(date:)
-    target_time_entries = time_entries.where(created_at: date.all_day)
+    target_time_entries = time_entries.where(created_at: date.all_day, consumed: false)
     return unless target_time_entries.exists?
 
     message_content = <<~CONTENT
@@ -75,6 +75,7 @@ class Task < ApplicationRecord
         activity.build_activity_evaluation
         activity.save!
       end
+      target_time_entries.update_all(consumed: true)
     end
   rescue => e
     logger.warn "Failed to create activities: #{e.message}"
