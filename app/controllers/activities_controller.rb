@@ -9,6 +9,14 @@ class ActivitiesController < ApplicationController
     if scope_chains.present?
       @activities = @activities.applied_scopes(scope_chains)
     end
+    perform_on = params&.dig(:perform_on)&.to_date
+    if perform_on.present?
+      @activities = @activities.perform_on(perform_on)
+    end
+    performed_on = params&.dig(:performed_on)&.to_date
+    if performed_on.present?
+      @activities = @activities.performed_on(performed_on)
+    end
   end
 
   def new

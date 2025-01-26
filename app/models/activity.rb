@@ -12,6 +12,8 @@ class Activity < ApplicationRecord
   scope :default_order, -> { order(Arel.sql("performed_at ASC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
   scope :scheduled, -> { where(performed_at: nil).where.not(perform_at: nil) }
   scope :performed, -> { where.not(performed_at: nil) }
+  scope :perform_on, ->(date) { where(perform_at: date.all_day) }
+  scope :performed_on, ->(date) { where(performed_at: date.all_day) }
   scope :by_evaluation_value, ->(value) do
     raise ArgumentError, "Invalid value: #{value}" unless ActivityEvaluation::VALUES.include?(value.to_sym)
 

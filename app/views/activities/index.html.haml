@@ -1,17 +1,39 @@
-.row.justify-content-center.align-items-center.mt-5
-  .col-md-6.col-11
+:ruby
+  current_scope_chains = params[:scope_chains]
+  perform_on = params[:perform_on]
+  performed_on = params[:performed_on]
+.row.justify-content-center.align-items-center.mt-3
+  .col-md-8.col-11
+    .vstack.gap-3.mb-4
+      %p.mb-0.pb-1.border-bottom.fw-bold 絞り込み
+      = form_with url: activities_path, method: :get, class: "hstack gap-4 align-items-center" do |f|
+        = f.hidden_field :scope_chains, value: current_scope_chains
+        .row.g-3.align-items-center
+          .col-auto
+            = f.label :performed_on, "実行日"
+          .col-auto
+            = f.date_field :performed_on, value: performed_on, html5: true, class: "form-control"
+        .vr
+        .row.g-3.align-items-center
+          .col-auto
+            = f.label :perform_on, "実行予定日"
+          .col-auto
+            = f.date_field :perform_on, value: perform_on, html5: true, class: "form-control"
+        .vr
+        = f.submit "絞り込み", class: "btn btn-secondary btn-sm"
+        = link_to "リセット", activities_path(scope_chains: current_scope_chains), class: "btn btn-dark btn-sm"
     %ul.nav.nav-tabs.mb-3
-      - current_scope_chains = params[:scope_chains]
       %li.nav-item
         - scope_chains = "scheduled"
-        = link_to "実行予定", activities_path(scope_chains:), class: class_names("nav-link", active: current_scope_chains == scope_chains)
+        = link_to "実行予定", activities_path(scope_chains:, perform_on:, performed_on:),
+                            class: class_names("nav-link", active: current_scope_chains == scope_chains)
       - ActivityEvaluation::VALUES.each do |value|
         - scope_chains = "performed.#{value}"
         %li.nav-item
-          = link_to value.to_s.capitalize, activities_path(scope_chains:),
+          = link_to value.to_s.capitalize, activities_path(scope_chains:, perform_on:, performed_on:),
                     class: class_names("nav-link", active: current_scope_chains == scope_chains)
       %li.nav-item
-        = link_to "全て", activities_path, class: class_names("nav-link", active: current_scope_chains.blank?)
+        = link_to "全て", activities_path(perform_on:, performed_on:), class: class_names("nav-link", active: current_scope_chains.blank?)
     .hstack.gap-2.mb-3
       = link_to "新規作成", new_activity_path, class: "btn btn-primary"
       = link_to "実行予定の行動を作成", new_scheduled_activity_path, class: "btn btn-primary"
