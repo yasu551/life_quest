@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :challenges, only: %i[ index new create edit update destroy ]
     end
   end
+  resources :scheduled_activities, only: %i[ new create ]
   resources :activity_summaries, only: %i[ index new create edit update destroy ]
   resources :tags, only: %i[ index new create edit update destroy ]
   root "home#index"

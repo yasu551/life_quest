@@ -1,4 +1,22 @@
 ja:
+  activemodel:
+    attributes:
+      scheduled_activity_form:
+        name: 名前
+        start_on: 開始日
+        end_on: 終了日
+        time: 時間
+        schedule_type: タイプ
+        weekday: 曜日
+        day: 日
+        memo: メモ
+    attribute_values:
+      scheduled_activity_form:
+        schedule_type:
+          daily: 毎日
+          weekly: 毎週
+          monthly: 毎月
+
   activerecord:
     models:
       session: session  #g
