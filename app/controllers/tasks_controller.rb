@@ -57,7 +57,8 @@ class TasksController < ApplicationController
         @task.update(task_params)
       end
     if updated
-      redirect_to edit_task_url(@task), notice: "タスクを更新しました。"
+      url = @task.status.completed? ? tasks_url(format: :html) : edit_task_url(@task)
+      redirect_to url, notice: "タスクを更新しました。"
     else
       render :edit, status: :unprocessable_content
     end
