@@ -9,7 +9,12 @@ class TasksController < ApplicationController
       format.turbo_stream do
         @status = params[:status]
         if turbo_frame_request? && @status.present?
-          @tasks = Current.user.tasks.with_status(@status).includes(:tags).page(params[:page]).default_order
+          @tasks = Current.user.tasks.with_status(@status).includes(:tags).page(params[:page])
+          if @status == "completed"
+            @tasks = @tasks.latest_completed
+          else
+            @tasks = @tasks.default_order
+          end
           if params[:tag_id].present?
             tag = Current.user.tags.find(params[:tag_id])
             @tasks = @tasks.tagged_with(tag)
