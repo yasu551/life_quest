@@ -4,6 +4,6 @@
     %button.btn{ type: :button, data: { action: "markdown-viewer#toggleVisible" } }
       %i.bi.bi-eye
   = f.input method.to_sym, as: :text, label: false, input_html: { data: { controller: "textarea-auto-resize",
-                                                                  action: "textarea-auto-resize#resize",
+                                                                  action: "keydown.enter->textarea-auto-resize#resize",
                                                                   markdown_viewer_target: :input } }
   .d-none{ data: { markdown_viewer_target: :viewer } }
