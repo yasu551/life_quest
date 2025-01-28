@@ -9,7 +9,7 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :default_order, -> { order(Arel.sql("performed_at ASC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
+  scope :default_order, -> { order(Arel.sql("performed_at DESC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
   scope :scheduled, -> { where(performed_at: nil).where.not(perform_at: nil) }
   scope :performed, -> { where.not(performed_at: nil) }
   scope :perform_on, ->(date) { where(perform_at: date.all_day) }
