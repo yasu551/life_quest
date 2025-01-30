@@ -17,6 +17,7 @@ export default class extends Controller {
 
   resize() {
     this.element.style.height = "auto";
-    this.element.style.height = `${this.element.scrollHeight}px`;
+    const margin = 40;
+    this.element.style.height = `${this.element.scrollHeight + margin}px`;
   }
 }
