@@ -36,7 +36,7 @@
         = link_to "全て", activities_path(perform_on:, performed_on:), class: class_names("nav-link", active: current_scope_chains.blank?)
     .hstack.gap-2.mb-3
       = link_to "新規作成", new_activity_path, class: "btn btn-primary"
-      = link_to "実行予定の行動を作成", new_scheduled_activity_path, class: "btn btn-primary"
+      = link_to "実行予定の行動を一括作成", new_scheduled_activity_path, class: "btn btn-primary"
     .list-group.mb-3
       - @activities.each do |activity|
         = link_to edit_activity_path(activity), class: "list-group-item list-group-item-action" do
