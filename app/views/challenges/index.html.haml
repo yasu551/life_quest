@@ -1,0 +1,23 @@
+.row.justify-content-center.align-items-center.mt-5
+  .col-md-8.col-11
+    %ul.nav.nav-tabs.mb-3
+      - current_scope_chains = params[:scope_chains]
+      %li.nav-item
+        - scope_chains = "active.unperformed"
+        = link_to "未実行", challenges_path(scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "active.performed"
+        = link_to "実行済み", challenges_path(scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        - scope_chains = "inactive"
+        = link_to "無効", challenges_path(scope_chains:),
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
+      %li.nav-item
+        = link_to "全て", challenges_path, class: class_names("nav-link", active: current_scope_chains.blank?)
+    .vstack.gap-2.mb-3
+      - @challenges.each do |challenge|
+        = link_to [ challenge.source, challenge, action: :edit ], class: "text-decoration-none" do
+          = render "challenge", challenge:
+      = paginate @challenges

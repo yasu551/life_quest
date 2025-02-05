@@ -26,7 +26,7 @@
       %li.nav-item
         - scope_chains = "scheduled"
         = link_to "実行予定", activities_path(scope_chains:, perform_on:, performed_on:),
-                            class: class_names("nav-link", active: current_scope_chains == scope_chains)
+                  class: class_names("nav-link", active: current_scope_chains == scope_chains)
       - ActivityEvaluation::VALUES.each do |value|
         - scope_chains = "performed.#{value}"
         %li.nav-item

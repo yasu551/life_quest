@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :challenges, only: %i[ index new create edit update destroy ]
     end
   end
+  resources :challenges, only: %i[ index ]
   resources :tasks, only: %i[ index new create edit update destroy] do
     scope module: :tasks do
       resources :time_entries, only: %i[ index create edit update destroy ]

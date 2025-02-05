@@ -11,6 +11,8 @@
         %li.nav-item
           = link_to "タスク", tasks_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:task))
         %li.nav-item
+          = link_to "小さな挑戦", challenges_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:challenge))
+        %li.nav-item
           = link_to "行動サマリ", activity_summaries_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:activity_summary))
         %li.nav-item
           = link_to "行動", activities_path(scope_chains: "scheduled"), class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:activity))

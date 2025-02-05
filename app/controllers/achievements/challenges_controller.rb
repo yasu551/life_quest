@@ -1,4 +1,5 @@
 class Achievements::ChallengesController < Achievements::BaseController
+  active_menu :challenge
   before_action :set_challenge, only: %i[ edit update destroy ]
 
   def index

@@ -1,0 +1,6 @@
+.card
+  .card-header
+    %h5.mb-0= challenge.name
+  .card-body
+    %p #{challenge.source.class.model_name.human}: #{challenge.source.name}
+    %small.text-body-secondary 実行予定日時: #{nl(challenge.perform_at, format: :long)},  実行日時: #{nl(challenge.performed_at, format: :long)}

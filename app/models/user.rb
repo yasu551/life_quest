@@ -16,4 +16,9 @@ class User < ApplicationRecord
 
   validates :email_address, uniqueness: true
   validates :password, length: { in: PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH }
+
+  def challenges
+    Challenge.where(id: achievement_challenges.select(:id))
+             .or(Challenge.where(id: activity_challenges.select(:id)))
+  end
 end
