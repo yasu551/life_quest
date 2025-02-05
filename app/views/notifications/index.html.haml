@@ -1,0 +1,6 @@
+.row.justify-content-center.align-items-center.mt-5
+  .col-md-8.col-11
+    .vstack.gap-2.mb-3
+      - @notifications.each do |notification|
+        %p= notification.as_json
+      = paginate @notifications

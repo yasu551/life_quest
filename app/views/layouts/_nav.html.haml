@@ -17,6 +17,8 @@
         %li.nav-item
           = link_to "行動", activities_path(scope_chains: "scheduled"), class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:activity))
         %li.nav-item
+          = link_to "通知", notifications_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:notification))
+        %li.nav-item
           = link_to "タグ", tags_path, class: class_names("nav-link", "text-primary-emphasis active": active_menu?(:tag))
         %li.nav-item
           = button_to "ログアウト", session_path, method: :delete, data: { turbo_confirm: "ログアウトしますか？" }, class: "nav-link"

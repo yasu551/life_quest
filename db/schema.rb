@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_26_200510) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_05_231144) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -65,6 +65,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_200510) do
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_activity_summary_items_on_activity_id"
     t.index ["activity_summary_id", "activity_id"], name: "idx_on_activity_summary_id_activity_id_dd8c6dafdb", unique: true
+  end
+
+  create_table "challenge_notifications", force: :cascade do |t|
+    t.integer "challenge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_challenge_notifications_on_challenge_id"
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -149,6 +156,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_200510) do
   add_foreign_key "activity_summaries", "users"
   add_foreign_key "activity_summary_items", "activities"
   add_foreign_key "activity_summary_items", "activity_summaries"
+  add_foreign_key "challenge_notifications", "challenges"
   add_foreign_key "sessions", "users"
   add_foreign_key "tags", "users"
   add_foreign_key "task_taggings", "tags"

@@ -21,4 +21,8 @@ class User < ApplicationRecord
     Challenge.where(id: achievement_challenges.select(:id))
              .or(Challenge.where(id: activity_challenges.select(:id)))
   end
+
+  def challenge_notifications
+    ChallengeNotification.where(challenge_id: challenges.select(:id))
+  end
 end

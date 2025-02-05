@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   resources :scheduled_activities, only: %i[ new create ]
   resources :activity_summaries, only: %i[ index new create edit update destroy ]
+  resources :notifications, only: %i[ index ]
   resources :tags, only: %i[ index new create edit update destroy ]
   root "home#index"
 
