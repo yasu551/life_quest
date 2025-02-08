@@ -4,6 +4,8 @@ class Challenge < ApplicationRecord
   belongs_to :source, polymorphic: true
   has_one :challenge_notification, dependent: :destroy
 
+  delegate :user, to: :source
+
   validates :name, presence: true
 
   after_save if: -> { perform_at.present? } do
@@ -24,6 +26,12 @@ class Challenge < ApplicationRecord
       challenge_notification.touch
     else
       create_challenge_notification
+    end
+
+    push_subscription = user.latest_push_subscription
+    if push_subscription.present?
+      path = Rails.application.routes.url_helpers.polymorphic_url([ source, self ], action: :edit, only_path: true)
+      WebPushJob.perform_later(push_subscription_id: push_subscription.id, title: "「#{name}」をする時間です", body: description, path:)
     end
   end
 end
