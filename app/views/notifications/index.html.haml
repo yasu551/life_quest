@@ -1,11 +1,11 @@
 .row.justify-content-center.align-items-center.mt-5
   .col-md-8.col-11
-    .hstack.gap-2.mb-3{ data: { controller: 'pwa--web-push-subscription' } }
-      %button.btn.btn-outline-primary.btn-sm{ type: :button, data: { action: 'pwa--web-push-subscription#subscribe',
-                                                                     'pwa--web-push-subscription-target': :subscribeButton } }
+    .hstack.gap-2.mb-3{ data: { controller: "pwa--web-push-subscription" } }
+      %button.btn.btn-outline-primary.btn-sm{ type: :button, data: { action: "pwa--web-push-subscription#subscribe",
+                                                                     "pwa--web-push-subscription-target": :subscribeButton } }
         通知を受け取る
-      %button.btn.btn-outline-danger.btn-sm{ type: :button, data: { action: 'pwa--web-push-subscription#unsubscribe',
-                                                                    'pwa--web-push-subscription-target': :unsubscribeButton } }
+      %button.btn.btn-outline-danger.btn-sm{ type: :button, data: { action: "pwa--web-push-subscription#unsubscribe",
+                                                                    "pwa--web-push-subscription-target": :unsubscribeButton } }
         通知を受け取らない
     .vstack.gap-2.mb-3
       - @notifications.each do |notification|
