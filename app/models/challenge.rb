@@ -8,8 +8,11 @@ class Challenge < ApplicationRecord
 
   validates :name, presence: true
 
-  after_save if: -> { perform_at.present? } do
+  after_save if: -> { perform_at.present? && performed_at.blank? } do
     SaveChallengeNotificationJob.set(wait_until: perform_at).perform_later(challenge_id: id)
+  end
+  after_save if: -> { performed_at.present? } do
+    challenge_notification&.destroy
   end
 
   scope :default_order, -> { order(id: :desc) }
