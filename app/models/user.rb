@@ -27,6 +27,10 @@ class User < ApplicationRecord
     ChallengeNotification.where(challenge_id: challenges.select(:id))
   end
 
+  def notifications
+    challenge_notifications
+  end
+
   def latest_push_subscription
     push_subscriptions.latest.first
   end
