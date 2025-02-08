@@ -2,5 +2,11 @@
   .col-md-8.col-11
     .vstack.gap-2.mb-3
       - @notifications.each do |notification|
-        %p= notification.as_json
+        - case notification
+        - when ChallengeNotification
+          - challenge = notification.challenge
+          = link_to [ challenge.source, challenge, action: :edit ], class: "text-decoration-none" do
+            = render "challenges/challenge", challenge:
+        - else
+          - raise "Unknown notification type: #{notification.class}"
       = paginate @notifications
