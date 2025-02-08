@@ -7,6 +7,7 @@
     %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }
     %meta{ content: "yes", name: "apple-mobile-web-app-capable" }
     %meta{ content: "yes", name: "mobile-web-app-capable" }
+    %meta{ content: Rails.configuration.x.vapid.public_key, name: "vapid-public-key" }
     = csrf_meta_tags
     = csp_meta_tag
     = yield :head

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :activity_summaries, dependent: :restrict_with_exception
   has_many :activity_challenges, through: :activities, source: :challenges
   has_many :tags, dependent: :restrict_with_exception
+  has_many :push_subscriptions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 

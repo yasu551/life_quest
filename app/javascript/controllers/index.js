@@ -4,11 +4,13 @@
 
 import { application } from "./application"
 import MarkdownViewerController from "./markdown_viewer_controller"
+import Pwa__WebPushSubscriptionController from "./pwa/web_push_subscription_controller"
 import SlimSelectController from "./slim_select_controller"
 import TextareaAutoResizeController from "./textarea_auto_resize_controller"
 import ToastController from "./toast_controller"
 
 application.register("markdown-viewer", MarkdownViewerController)
+application.register("pwa--web-push-subscription", Pwa__WebPushSubscriptionController)
 application.register("slim-select", SlimSelectController)
 application.register("textarea-auto-resize", TextareaAutoResizeController)
 application.register("toast", ToastController)
