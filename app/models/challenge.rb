@@ -15,7 +15,7 @@ class Challenge < ApplicationRecord
     challenge_notification&.destroy
   end
 
-  scope :default_order, -> { order(id: :desc) }
+  scope :default_order, -> { order(Arel.sql("performed_at DESC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
   scope :performed, -> { where.not(performed_at: nil) }
   scope :unperformed, -> { where(performed_at: nil) }
   scope :active, -> { where(active: true) }
