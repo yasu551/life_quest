@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_08_181017) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_232125) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -67,13 +67,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_181017) do
     t.index ["activity_summary_id", "activity_id"], name: "idx_on_activity_summary_id_activity_id_dd8c6dafdb", unique: true
   end
 
-  create_table "challenge_notifications", force: :cascade do |t|
-    t.integer "challenge_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["challenge_id"], name: "index_challenge_notifications_on_challenge_id"
-  end
-
   create_table "challenges", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -86,6 +79,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_181017) do
     t.datetime "updated_at", null: false
     t.text "memo", default: "", null: false
     t.index ["source_type", "source_id"], name: "index_challenges_on_source"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "source_type", null: false
+    t.integer "source_id", null: false
+    t.string "title", null: false
+    t.string "body", default: "", null: false
+    t.string "path", default: "/", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_type", "source_id"], name: "index_notifications_on_source"
   end
 
   create_table "push_subscriptions", force: :cascade do |t|
@@ -167,7 +171,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_181017) do
   add_foreign_key "activity_summaries", "users"
   add_foreign_key "activity_summary_items", "activities"
   add_foreign_key "activity_summary_items", "activity_summaries"
-  add_foreign_key "challenge_notifications", "challenges"
   add_foreign_key "push_subscriptions", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "tags", "users"

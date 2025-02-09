@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
+  include Notifiable
+
   APPLICABLE_SCOPE_NAMES = %w[scheduled performed good neutral bad].freeze
 
   belongs_to :user
@@ -24,5 +26,18 @@ class Activity < ApplicationRecord
   scope :bad, -> { by_evaluation_value(:bad) }
   scope :applied_scopes, ->(scope_chains) do
     AppliedScopesQuery.new(self, APPLICABLE_SCOPE_NAMES).resolve(scope_chains)
+  end
+
+  private
+
+  def push_subscription
+    user.latest_push_subscription
+  end
+
+  def notified_content
+    {
+      title: "「#{name}」をする時間です",
+      path: Rails.application.routes.url_helpers.edit_activity_path(self)
+    }
   end
 end

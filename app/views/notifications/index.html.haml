@@ -7,13 +7,8 @@
       %button.btn.btn-outline-danger.btn-sm{ type: :button, data: { action: "pwa--web-push-subscription#unsubscribe",
                                                                     "pwa--web-push-subscription-target": :unsubscribeButton } }
         通知を受け取らない
-    .vstack.gap-2.mb-3
+    .list-group.mb-3
       - @notifications.each do |notification|
-        - case notification
-        - when ChallengeNotification
-          - challenge = notification.challenge
-          = link_to [ challenge.source, challenge, action: :edit ], class: "text-decoration-none" do
-            = render "challenges/challenge", challenge:
-        - else
-          - raise "Unknown notification type: #{notification.class}"
+        = link_to notification.path, class: "list-group-item list-group-item-action" do
+          = render 'notification', notification:
       = paginate @notifications

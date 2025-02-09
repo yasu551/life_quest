@@ -23,12 +23,9 @@ class User < ApplicationRecord
              .or(Challenge.where(id: activity_challenges.select(:id)))
   end
 
-  def challenge_notifications
-    ChallengeNotification.where(challenge_id: challenges.select(:id))
-  end
-
   def notifications
-    challenge_notifications
+    Notification.where(source: challenges)
+                .or(Notification.where(source: activities))
   end
 
   def latest_push_subscription

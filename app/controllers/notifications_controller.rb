@@ -2,6 +2,6 @@ class NotificationsController < ApplicationController
   active_menu :notification
 
   def index
-    @notifications = Current.user.challenge_notifications.page(params[:page]).default_order
+    @notifications = Current.user.notifications.page(params[:page]).default_order
   end
 end
