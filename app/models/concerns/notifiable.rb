@@ -4,6 +4,9 @@ module Notifiable
   included do
     has_one :notification, as: :source, dependent: :destroy
 
+    after_update if: -> { perform_at.blank? } do
+      notification&.destroy
+    end
     after_save if: -> { perform_at.present? && performed_at.blank? } do
       SaveNotificationJob.set(wait_until: perform_at).perform_later(source_type: self.class.name, source_id: id)
     end
