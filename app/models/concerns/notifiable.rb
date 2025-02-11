@@ -7,7 +7,7 @@ module Notifiable
     after_update if: -> { perform_at.blank? } do
       notification&.destroy
     end
-    after_save if: -> { perform_at.present? && performed_at.blank? } do
+    after_save if: -> { perform_at.present? && perform_at_previously_changed? && performed_at.blank? } do
       SaveNotificationJob.set(wait_until: perform_at).perform_later(source_type: self.class.name, source_id: id)
     end
     after_save if: -> { performed_at.present? } do
