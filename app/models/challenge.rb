@@ -8,7 +8,7 @@ class Challenge < ApplicationRecord
   delegate :user, to: :source
 
   validates :name, presence: true
-  validates :perform_at, presence: true
+  validates :perform_at, presence: true, if: -> { performed_at.blank? }
 
   scope :default_order, -> { order(Arel.sql("performed_at DESC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
   scope :performed, -> { where.not(performed_at: nil) }

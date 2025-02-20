@@ -10,7 +10,7 @@ class Activity < ApplicationRecord
   has_many :challenges, as: :source, dependent: :restrict_with_exception
 
   validates :name, presence: true
-  validates :perform_at, presence: true
+  validates :perform_at, presence: true, if: -> { performed_at.blank? }
 
   scope :default_order, -> { order(Arel.sql("performed_at DESC NULLS LAST, perform_at ASC NULLS LAST, id DESC")) }
   scope :scheduled, -> { where(performed_at: nil).where.not(perform_at: nil) }
