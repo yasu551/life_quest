@@ -80,6 +80,9 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.expect(task: [ :name, :completion_condition, :status, :deadline_on, :perform_on, :completed_on, :sub_tasks, :memo, tag_ids: [] ])
+    params.expect(task: [ :name, :completion_condition, :status,
+                         :deadline_on, :perform_on, :completed_on, :sub_tasks, :memo,
+                         :estimated_pomodoro_count,
+                         tag_ids: [] ])
   end
 end

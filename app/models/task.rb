@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   extend Enumerize
 
+  SECONDS_PER_POMODORO = 1_500
+
   paginates_per 10
 
   enumerize :status, in: %i[new waiting working completed pending], scope: true
@@ -15,6 +17,8 @@ class Task < ApplicationRecord
   validates :deadline_on, date: { allow_blank: true }
   validates :perform_on, date: { allow_blank: true }
   validates :completed_on, date: { allow_blank: true }
+  validates :estimated_pomodoro_count, numericality: { only_integer: true, greater_than_or_equal_to: 1 }, allow_nil: true
+  validates :elapsed_time, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   before_validation :set_completed_on, if: -> { status.completed? }
 
@@ -80,6 +84,10 @@ class Task < ApplicationRecord
     end
   rescue => e
     logger.warn "Failed to create activities: #{e.message}"
+  end
+
+  def actual_pomodoro_count
+    elapsed_time.fdiv(SECONDS_PER_POMODORO)
   end
 
   private

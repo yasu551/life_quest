@@ -74,6 +74,9 @@ ja:
         activities: activities  #g
         time_entries: time_entries  #g
         tags: タグ
+        estimated_pomodoro_count: 見積ポモドーロ数
+        actual_pomodoro_count: 実績ポモドーロ数
+        elapsed_time: 経過時間(秒)
 
       activity:
         memo: メモ
