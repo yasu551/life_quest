@@ -1,10 +1,10 @@
 = turbo_frame_tag time_entry do
   .card
     .card-body.row
-      .vstack.gap-1.col-10
+      .vstack.gap-1.col-9
         %p.mb-0= time_entry.content
         %small.text-body-secondary= l(time_entry.created_at, format: :long)
-      .vstack.gap-1.col-2
-        = link_to "編集", edit_task_time_entry_path(task, time_entry), class: "btn btn-sm btn-secondary"
+      .vstack.gap-1.col-3
+        = link_to "編集", edit_task_time_entry_path(task, time_entry), class: "btn btn-sm btn-secondary flex-shrink-0"
         = button_to "削除", task_time_entry_path(task, time_entry), method: :delete,
-          data: { turbo_frame: dom_id(task, :time_entries), turbo_confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger w-100"
+          data: { turbo_frame: dom_id(task, :time_entries), turbo_confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger w-100 flex-shrink-0"
