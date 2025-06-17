@@ -74,6 +74,7 @@ ja:
         activities: activities  #g
         time_entries: time_entries  #g
         tags: タグ
+        estimated_pomodoro_count: 見積ポモドーロ数
 
       activity:
         memo: メモ

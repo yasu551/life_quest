@@ -6,6 +6,7 @@
     = f.input :deadline_on, html5: true
     = f.input :perform_on, html5: true
     = f.input :completed_on, html5: true
+    = f.input :estimated_pomodoro_count
   = render "application/markdown_textarea", f:, method: :sub_tasks
   = render "application/markdown_textarea", f:, method: :memo
   .vstack.gap-2.mb-4
