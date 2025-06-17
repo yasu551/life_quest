@@ -1,12 +1,18 @@
 = turbo_refreshes_with(method: :morph, scroll: :preserve)
 
-.row.container-fluid.pt-4{
-  data: {
-    controller: 'task-elapsed-time-updater',
-    task_elapsed_time_updater_elapsed_time_value: @task.elapsed_time,
-    task_elapsed_time_updater_url_value: task_elapsed_time_url(@task),
-  }
-}
+:ruby
+  data =
+    if %w[new waiting working].include?(@task.status)
+     {
+       controller: 'task-elapsed-time-updater',
+       task_elapsed_time_updater_elapsed_time_value: @task.elapsed_time,
+       task_elapsed_time_updater_url_value: task_elapsed_time_url(@task),
+     }
+    else
+     {}
+    end
+
+.row.container-fluid.pt-4{ data: data }
   .col-md-6.col-11
     .mb-3= render "form", task: @task, tags: @tags
     .hstack.justify-content-between
