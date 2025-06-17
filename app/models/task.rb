@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   extend Enumerize
 
+  SECONDS_PER_POMODORO = 1_500
+
   paginates_per 10
 
   enumerize :status, in: %i[new waiting working completed pending], scope: true
@@ -82,6 +84,10 @@ class Task < ApplicationRecord
     end
   rescue => e
     logger.warn "Failed to create activities: #{e.message}"
+  end
+
+  def actual_pomodoro_count
+    elapsed_time.fdiv(SECONDS_PER_POMODORO)
   end
 
   private
