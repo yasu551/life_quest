@@ -75,6 +75,7 @@ ja:
         time_entries: time_entries  #g
         tags: タグ
         estimated_pomodoro_count: 見積ポモドーロ数
+        elapsed_time: 経過時間(秒)
 
       activity:
         memo: メモ

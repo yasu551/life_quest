@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_060627) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_17_062036) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -144,6 +144,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_060627) do
     t.date "perform_on"
     t.date "completed_on"
     t.integer "estimated_pomodoro_count"
+    t.integer "elapsed_time", default: 0, null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

@@ -16,6 +16,7 @@ class Task < ApplicationRecord
   validates :perform_on, date: { allow_blank: true }
   validates :completed_on, date: { allow_blank: true }
   validates :estimated_pomodoro_count, numericality: { only_integer: true, greater_than_or_equal_to: 1 }, allow_nil: true
+  validates :elapsed_time, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   before_validation :set_completed_on, if: -> { status.completed? }
 
